@@ -4,11 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    secretpin: DataTypes.STRING,
-    friends: DataTypes.INTEGER
+    secretpin: DataTypes.STRING
   }, {});
   users.associate = function(models) {
-    // associations can be defined here
+    users.belongsToMany(models.friendships, { as: 'theUsers', foreignKey: 'id', through: 'users_friendships_join' })
   };
   return users;
 };
