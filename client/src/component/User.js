@@ -9,27 +9,38 @@ import '../styles/User.css';
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.props.findFriends();     
+        this.props.findFriends();
+        let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
         this.state = ({
-            colorArray: ['primary', 'success', 'info', 'warning', 'danger']
+            cardColor: this.shuffle(colorArray)
         })   
     }
 
-    renderCards = ()=> {
+    
+
+    shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    renderCards = () => {
         
 
         var colorNumber = 0
         var renderedCards = []
 
-        this.props.friends.map((friend, index) =>  {
+        this.props.friends.map((friend) =>  {
 
 
-            renderedCards.push(<Card className='card' inverse color={this.state.colorArray[colorNumber]}>
+            renderedCards.push(<Card className='card' inverse color={this.state.cardColor[colorNumber]} key={friend.id}>
             <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
             <CardBody>
                 <CardTitle>{friend.name}</CardTitle>
                 <CardSubtitle>{friend.email}</CardSubtitle>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                <CardText>Hobbies</CardText>
                 <Button>Button</Button>
             </CardBody>
             </Card>)
@@ -43,23 +54,27 @@ class User extends React.Component {
 
         })
 
-        console.log(renderedCards)
-
         return renderedCards
-            
-            
-        
     }
     
 
     render() {
-        console.log(this.props)
+        
         return (
-            <div className='mainDiv'>
-            { 
-                this.props.friends ? this.renderCards() : null
+            <div>
                 
-            }
+                {
+                    this.props.friends ?  <h2>Total friends: {this.props.friends.length}</h2> : null
+                }
+                
+
+                <div className='cardContainer'>
+
+                { 
+                    this.props.friends ? this.renderCards() : null
+                    
+                }
+                </div>
             </div>
         );
     }
