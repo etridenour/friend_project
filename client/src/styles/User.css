@@ -1,6 +1,10 @@
 .mainDiv{
     margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .card{
     width: 300px;
+    margin-left: 30px;
+    margin-top: 30px;
 }

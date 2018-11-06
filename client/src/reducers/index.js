@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import reducers from './reducers';
+import friendReducer from './friendReducer';
 import authReducer from './authReducer';
 
 
 export default combineReducers({
-    reducers,
-    authReducer
+    friends: friendReducer,
 })

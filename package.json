@@ -2,9 +2,11 @@
   "name": "friend_project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "nodemon --ignore client ./apiServer.js",
+    "client": "cd client && npm run start"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +16,8 @@
     "pg": "^7.6.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   }
 }
