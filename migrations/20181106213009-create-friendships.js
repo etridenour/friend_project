@@ -1,24 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users_friendships_joins', {
+    return queryInterface.createTable('friendships', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      friend1: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id'
         }
       },
-      friendshipId: {
+      friend2: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'friendships',
+          model: 'users',
           key: 'id'
         }
       },
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users_friendships_joins');
+    return queryInterface.dropTable('friendships');
   }
 };

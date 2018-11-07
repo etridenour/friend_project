@@ -3,41 +3,112 @@ db = require('../models')
 //create
 
 db.users.create(
-    {name: 'Eric',
+    {firstName: 'Eric',
+    lastName: 'Ridenour',
     email: 'email@email.com',
     password: 'password',
-    secretpin: 'secret'
+    secretpin: 'secret',
+    privilege: 'employee'
     }
 )
 
 db.users.create(
-    {name: 'Jeff',
+    {firstName: 'Jerry',
+    lastName: 'Dick',
     email: 'email@email.com',
     password: 'password',
-    secretpin: 'secret'
+    secretpin: 'secret',
+    privilege: 'employee'
     }
 )
 
 db.users.create(
-    {name: 'Emily',
+    {firstName: 'Jane',
+    lastName: 'Jeff',
     email: 'email@email.com',
     password: 'password',
-    secretpin: 'secret'
+    secretpin: 'secret',
+    privilege: 'employee'
     }
 )
 
 db.users.create(
-    {name: 'Karen',
+    {firstName: 'Fuzz',
+    lastName: 'Runsky',
     email: 'email@email.com',
     password: 'password',
-    secretpin: 'secret'
+    secretpin: 'secret',
+    privilege: 'employee'
     }
 )
 
 db.users.create(
-    {name: 'Dweezil',
+    {firstName: 'Sheet',
+    lastName: 'Gampton',
     email: 'email@email.com',
     password: 'password',
-    secretpin: 'secret'
+    secretpin: 'secret',
+    privilege: 'employee'
     }
 )
+
+db.users.create(
+    {firstName: 'Sked',
+    lastName: 'En',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'employee'
+    }
+)
+
+db.users.create(
+    {firstName: 'Sean',
+    lastName: 'Biesendorfer',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'employee'
+    }
+)
+
+db.users.create(
+    {firstName: 'Mark',
+    lastName: 'Ridenour',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'employee'
+    }
+)
+
+db.users.create(
+    {firstName: 'Jenny',
+    lastName: 'Camper',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'employee'
+    }
+)
+
+db.users.create(
+    {firstName: 'Candle',
+    lastName: 'Cung',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'employee'
+    }
+)
+
+db.users.create(
+    {firstName: 'Brad',
+    lastName: 'Ridenour',
+    email: 'email@email.com',
+    password: 'password',
+    secretpin: 'secret',
+    privilege: 'admin'
+    }
+)
+

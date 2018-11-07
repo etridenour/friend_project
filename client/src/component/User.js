@@ -25,20 +25,20 @@ class User extends React.Component {
         }
         return a;
     }
-
+    
     renderCards = () => {
         
 
         var colorNumber = 0
         var renderedCards = []
-
+       
         this.props.friends.map((friend) =>  {
 
 
             renderedCards.push(<Card className='card' inverse color={this.state.cardColor[colorNumber]} key={friend.id}>
             <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
             <CardBody>
-                <CardTitle>{friend.name}</CardTitle>
+                <CardTitle>{friend.firstName}</CardTitle>
                 <CardSubtitle>{friend.email}</CardSubtitle>
                 <CardText>Hobbies</CardText>
                 <Button>Button</Button>
@@ -52,14 +52,18 @@ class User extends React.Component {
                 colorNumber += 1
             }
 
+            
+
         })
+
+        console.log(renderedCards, this.props.friends)
 
         return renderedCards
     }
     
 
     render() {
-        
+        console.log(this.props.friends)
         return (
             <div>
                 
@@ -71,7 +75,7 @@ class User extends React.Component {
                 <div className='cardContainer'>
 
                 { 
-                    this.props.friends ? this.renderCards() : null
+                    this.renderCards()
                     
                 }
                 </div>

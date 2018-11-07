@@ -1,6 +1,6 @@
 import { FIND_FRIENDS } from '../actions/types';
 
-const INITIAL_STATE = null
+const INITIAL_STATE = []
 
 export default function(state = INITIAL_STATE, action){
 
@@ -8,7 +8,7 @@ export default function(state = INITIAL_STATE, action){
 
         case FIND_FRIENDS:
 
-            return action.payload
+            return action.payload.friends
             
         default:
             return state;

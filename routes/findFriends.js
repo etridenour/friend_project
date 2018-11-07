@@ -1,51 +1,117 @@
-const express = require('express');
+
+const express = require('express')
 const router = express.Router();
-const db = require('../models');
-const bodyParser = require('body-parser');
+db = require('../models')
+const {
+    USER,
+    FRIENDSHIP,
+    USER_FRIENDSHIP_MODEL,
+    USER_FRIENDSHIP_THROUGH,
+    USER_FRIENDSHIP_AS
+} = require('../dbConstants')
 
 
-router.use(bodyParser.urlencoded({extended: false}));
 
 
-router.get('/findFriends', (req, res) => {
+router.get('/findFriends', (req, res)=>{
 
-    let friendsArray = [];
+    const uid = req.params.uid
 
-    db.friendships.findAll({
+    db[FRIENDSHIP].findAll({
 
-        include: [
-            {
-                model: db.users,
-                as: 'friends',
-                through: 'user_friendships_join',
-                attributes: [
-                'id', 'name', 'email', 'secretpin'
-                ]
-            }
-        ],
-        where: {userId: 1}
-    
+    include: [
+        {
+            model: db[USER],
+            as: USER_FRIENDSHIP_AS,
+            through: USER_FRIENDSHIP_THROUGH,
+            attributes: [
+            'id', 'firstName', 'lastName', 'email', 'secretpin', 'privilege'
+            ]
+
+        }
+
+    ],
+    where: {friend1: 1}
+
     }).then(results => {
-        // console.log(results[0].dataValues.friends)
-        results[0].dataValues.friends.forEach((e) => {
 
-            friendsArray.push({
-                id: e.dataValues.id,
-                name: e.dataValues.name,
-                email: e.dataValues.email,
-                pin: e.dataValues.secretpin
-            })
-        })
+    var friendsArray = []
+
+    results.forEach(function(dbRecord){
+
+        // makes sure there is a friendship record
+        if(dbRecord && dbRecord.dataValues){
+
+        var friendship = dbRecord.dataValues
+
+        // makes sure the friendship record contains a friend
+        if(friendship.theFriend && friendship.theFriend[0] && friendship.theFriend[0].dataValues){
+            
+            var theFriend = friendship.theFriend[0].dataValues
+
+            // if the friend record is a valid user object, push it in to the friends array
+            if(theFriend.id){
+            delete theFriend.users_friendships
+            friendsArray.push(theFriend)
+
+            }
         
-        return friendsArray;
-        
-    }).then(array => {
-        res.json(array);
+        }
+
+        }
+
     })
+        console.log(friendsArray)
+        res.json({friends: friendsArray})
+
+    })
+
+})
+
+router.post('/friendsOf', (req, res)=>{
+
+    const id1 = parseInt(req.body.friend1)
+    const id2 = parseInt(req.body.friend2)
+
+    //adds a friend to the user's friends list
+    createFriends(id1, id2, false)
+
+    //adds the friend to the user's friends list
+    // createFriends(id2, id1, true)
+
+    function createFriends(friend1, friend2, bothCreated){
+
+        // adds friendship record
+        db[FRIENDSHIP].create({
+            friend1: friend1,
+            friend2: friend2
+            }).then(results => {
+
+            const createdFriendship = results.dataValues
+
+            // if the friendship was added, join the users together
+            if(createdFriendship && createdFriendship.id){
+            
+            // joins the users together by adding a row to the 'join' table that 
+            // contains the id of the friend, and the new friendship they belong to
+            db[USER_FRIENDSHIP_MODEL].create({
+                friend: friend2,
+                friendship: parseInt(createdFriendship.id)
+            }).then(function(result){
+
+                // checks to see if both friends have eachother in their friends list
+                if(bothCreated){
+                res.json({ message: 'friendship added'})
+                }
+
+                })
+
+            }
+
+        })
+
+    }
+
 })
 
 module.exports = router;
-
-// console.log(e.dataValues.name)
-            // console.log(e.dataValues.email)
-            // console.log(e.dataValues.secretpin)
