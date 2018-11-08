@@ -53,6 +53,16 @@ router.post('/signin', (req, res) => {
 
             }
 
+            else{
+
+                return res.json({ message: 'Account not found'})
+
+            }
+
+        } else {
+
+            return res.json({ message: 'Account not found'})
+
         }
 
     })

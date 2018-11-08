@@ -25,11 +25,11 @@ router.post('/signup', (req, res) => {
     let password = bcrypt.hashsync(req.body.password, 8);
     let secretpin = bcrypt.hashsync(req.body.secretpin, 8);
 
-    db.user.findAll({where: {email: email}})
+    db.users.findAll({where: {email: email}})
     .then(results => {
 
         if(results.length === 0){
-            db.user.create({
+            db.users.create({
                 name: name,
                 email: email,
                 password: password,

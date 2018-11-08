@@ -10,3 +10,6 @@ export const findFriends = () => async dispatch => {
     );
     dispatch ({ type: FIND_FRIENDS, payload: response.data})
 }
+
+
+
