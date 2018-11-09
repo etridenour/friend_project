@@ -13,9 +13,9 @@ const {
 
 
 
-router.get('/findFriends', (req, res)=>{
+router.post('/findFriends', (req, res)=>{
 
-    const uid = req.params.uid
+    let uid = req.body.uid
 
     db[FRIENDSHIP].findAll({
 
@@ -31,7 +31,7 @@ router.get('/findFriends', (req, res)=>{
         }
 
     ],
-    where: {friend1: 1}
+    where: {friend1: uid}
 
     }).then(results => {
 
@@ -61,7 +61,7 @@ router.get('/findFriends', (req, res)=>{
         }
 
     })
-        console.log(friendsArray)
+        // console.log(friendsArray)
         res.json({friends: friendsArray})
 
     })

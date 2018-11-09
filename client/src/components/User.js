@@ -9,8 +9,12 @@ import '../styles/User.css';
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.props.findFriends();
+        let uid = this.props.user.id;
+       
+        this.props.findFriends(uid);
+
         let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
+
         this.state = ({
             cardColor: this.shuffle(colorArray)
         })   
@@ -56,14 +60,15 @@ class User extends React.Component {
 
         })
 
-        console.log(renderedCards, this.props.friends)
+        // console.log(renderedCards, this.props.friends)
+        // console.log(this.props.user.id)
 
         return renderedCards
     }
     
 
     render() {
-        console.log(this.props.friends)
+    
         return (
             <div>
                 
@@ -86,7 +91,8 @@ class User extends React.Component {
 
 function mapStateToProps(state){
     return{
-        friends: state.friends
+        friends: state.friends,
+        user: state.auth
     }
 }
 

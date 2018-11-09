@@ -3,10 +3,11 @@ import axios from 'axios';
 
 
 
-export const findFriends = () => async dispatch => {
+export const findFriends = (id) => async dispatch => {
 
-    const response = await axios.get(
-        '/findFriends'
+    const response = await axios.post(
+        '/findFriends',
+        {uid: id}
     );
     dispatch ({ type: FIND_FRIENDS, payload: response.data})
 }

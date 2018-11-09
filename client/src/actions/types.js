@@ -9,3 +9,4 @@ export const FIND_FRIENDS = 'find_friends';
 export const AUTH_USER = 'auth_user';
 export const AUTH_ERROR = 'auth_error';
 export const AUTH_MESSAGE = 'auth_message';
+export const AUTH_MESSAGE_DEL = 'auth_message_del';

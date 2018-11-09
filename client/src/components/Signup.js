@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
-// import * as actions from '../actions/authActions';
+import * as actions from '../actions/authActions';
 
 import * as validation from './forms/formValidation';
 import * as fields from './forms/formFields';
@@ -28,6 +27,7 @@ class Signup extends Component {
 
 
     const { handleSubmit } = this.props;
+
     return (
         <div className='landingBackground'>
 
@@ -59,7 +59,7 @@ class Signup extends Component {
                     <label>Email:</label>
                     <Field
                         id='field'
-                        name="userName" 
+                        name="email" 
                         type="text"
                         component={fields.inputField}
                         validate={[validation.required, validation.email]}
@@ -70,7 +70,7 @@ class Signup extends Component {
                     <label>Password:</label>
                     <Field
                         id='field'
-                        name="userPassword"
+                        name="password"
                         type="password"
                         component={fields.inputField}
                         validate={[validation.required, validation.minLength6]}
@@ -81,7 +81,7 @@ class Signup extends Component {
                     <label>Secret Pin:</label>
                     <Field 
                         id='field'
-                        name="companyName"
+                        name="secretpin"
                         type="text"
                         component={fields.inputField}
                         validate={[validation.required, validation.minLength4]}

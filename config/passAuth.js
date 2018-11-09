@@ -17,7 +17,7 @@ const jwtOptions = {
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 
-    db.user.findById(payload.sub)
+    db.users.findById(payload.sub)
     .then((foundUser) => {
         if(foundUser){
             done(null, foundUser);
@@ -31,3 +31,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
     })
 
 })
+
+passport.use(jwtLogin);

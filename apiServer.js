@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('./routes/findFriends'));
 app.use(require('./routes/authentication/signup'));
 app.use(require('./routes/authentication/signin'));
+app.use(require('./routes/authentication/authenticate'));
 
 
 

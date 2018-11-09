@@ -3,11 +3,7 @@ const router = express.Router();
 const jwt = require('jwt-simple');
 const config = require('../../config');
 const db = require('../../models');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: false }));
 
 
 tokenForUser = (user) => {
@@ -20,20 +16,23 @@ tokenForUser = (user) => {
 
 router.post('/signup', (req, res) => {
 
-    let name = req.body.name;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
     let email = req.body.email;
-    let password = bcrypt.hashsync(req.body.password, 8);
-    let secretpin = bcrypt.hashsync(req.body.secretpin, 8);
+    let password = bcrypt.hashSync(req.body.password, 8);
+    let secretpin = bcrypt.hashSync(req.body.secretpin, 8);
 
     db.users.findAll({where: {email: email}})
     .then(results => {
 
         if(results.length === 0){
             db.users.create({
-                name: name,
+                firstName: firstName,
+                lastName: lastName,
                 email: email,
                 password: password,
-                secretpin: secretpin
+                secretpin: secretpin,
+                privilege: 'employee'
             })
             .then((user) => {
                 return res.json({token: tokenForUser(user)})

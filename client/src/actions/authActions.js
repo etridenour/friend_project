@@ -1,4 +1,5 @@
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE } from './types';
+import axios from 'axios';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -23,12 +24,12 @@ export const signup = (formProps, callback) => async dispatch => {
 export const signin = (formProps, callback) => async dispatch => {
     try {
         const response = await axios.post(
-            baseUrl + '/signup',
+            baseUrl + '/signin',
             formProps
         );
-        dispatch({ type: AUTH_USER, payload: response.data.token })
+        dispatch({ type: AUTH_USER, payload: response.data })
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', response.data.firstName);
+        localStorage.setItem('friend_email', response.data.email);
 
         callback();
 
@@ -43,13 +44,13 @@ export const autoSignin = (callback) => async dispatch => {
     try {
 
 
-        var userName = localStorage.getItem('beer_username')
+        var email = localStorage.getItem('friend_email')
         var token = localStorage.getItem('token')
 
         if(token && userName){
         const response = await axios.post(
             baseUrl + '/authenticate',
-            {userName: userName},
+            {email: email},
             {headers: {Authorization: token}}
         ).then((response)=>{
             var user = response.data
@@ -71,7 +72,7 @@ export const autoSignin = (callback) => async dispatch => {
 
 export const signout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('beer_username');
+    localStorage.removeItem('friend_username');
     return {
         type: AUTH_USER,
         payload: {
