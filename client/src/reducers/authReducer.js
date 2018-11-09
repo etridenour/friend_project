@@ -11,7 +11,12 @@ export default (state = INITIAL_STATE, action) => {
 
         case AUTH_USER:
             return{...state,
-                authenticated: action.payload
+                authenticated: action.payload.token,
+                userName: action.payload.userName,
+                companyName: action.payload.companyName,
+                privilege: action.payload.privilege,
+                id: action.payload.id,
+                signUpMessage: ''
             };
 
         case AUTH_ERROR:
