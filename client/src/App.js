@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
 import * as actions from './actions/authActions';
 import { connect } from 'react-redux';
 
 import User from './components/User'
+import Profile from './components/Profile'
 import Signup from './components/Signup'
 import Signin from './components/Signin'
 import Signout from './components/Signout'
@@ -24,8 +24,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar />
           <Route exact path="/user" component={User}/>
+          <Route exact path="/profile" component={Profile}/>
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/signin" component={Signin}/>
           <Route exact path="/signout" component={Signout}/>

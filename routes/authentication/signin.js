@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const jwt = require('jwt-simple');
 const config = require('../../config');
 const db = require('../../models');
 const bcrypt = require('bcryptjs');

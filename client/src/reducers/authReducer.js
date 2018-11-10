@@ -1,4 +1,4 @@
-import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL  } from '../actions/types';
+import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, CHANGE_PIN  } from '../actions/types';
 
 const INITIAL_STATE = {
     authenticated: '',
@@ -37,6 +37,11 @@ export default (state = INITIAL_STATE, action) => {
             return {...state,
             signUpMessage: '',
             errorMessage: ''
+            };
+
+        case CHANGE_PIN:
+            return {...state,
+            secretpin: action.payload
             };
 
         default:

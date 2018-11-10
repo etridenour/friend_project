@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL } from './types';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, CHANGE_PIN } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -47,7 +47,7 @@ export const autoSignin = (callback) => async dispatch => {
         var email = localStorage.getItem('friend_email')
         var token = localStorage.getItem('token')
 
-        if(token && userName){
+        if(token && email){
         const response = await axios.post(
             baseUrl + '/authenticate',
             {email: email},
@@ -90,4 +90,18 @@ export const signout1 = () => {
             errorMessage: ''
         }
     };
+};
+
+
+export const changePin = (pin) => async dispatch => {
+    try{
+        const response = await axios.post(
+            baseUrl + '/changePin',
+            {secretpin: pin}
+        );
+        dispatch({ type: CHANGE_PIN, payload: pin})
+
+    } catch (e) {
+        dispatch({ type: AUTH_ERROR, payload: 'Error'})
+    }
 };

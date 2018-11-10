@@ -3,6 +3,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } fr
 import * as actions from '../actions/actions';
 import { connect } from 'react-redux';
 
+import Navbar from './Navbar'
+import requireAuth from './requireAuth'
 import '../styles/User.css';
 
 
@@ -10,7 +12,7 @@ class User extends React.Component {
     constructor(props) {
         super(props);
         let uid = this.props.user.id;
-       
+    
         this.props.findFriends(uid);
 
         let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
@@ -35,7 +37,7 @@ class User extends React.Component {
 
         var colorNumber = 0
         var renderedCards = []
-       
+    
         this.props.friends.map((friend) =>  {
 
 
@@ -71,6 +73,7 @@ class User extends React.Component {
     
         return (
             <div>
+                <Navbar />
                 
                 {
                     this.props.friends ?  <h2>Total friends: {this.props.friends.length}</h2> : null
@@ -96,4 +99,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, actions)(User);
+export default requireAuth(connect(mapStateToProps, actions)(User));
