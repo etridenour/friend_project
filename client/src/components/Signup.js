@@ -14,7 +14,7 @@ class Signup extends Component {
     constructor(props){
         super(props)
         if(props.authenticated){
-            this.props.history.push('/Main');
+            this.props.history.push('/user');
         }
         
     }

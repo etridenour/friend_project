@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, CHANGE_PIN } from './types';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -53,9 +53,12 @@ export const autoSignin = (callback) => async dispatch => {
             {email: email},
             {headers: {Authorization: token}}
         ).then((response)=>{
-            var user = response.data
+            var user = response.data.user
+            var friends = response.data.friends
             user.token = token
-            dispatch({ type: AUTH_USER, payload: user })
+    
+            dispatch({ type: AUTH_USER, payload: user})
+            dispatch({ type: FIND_FRIENDS, payload: friends  })
         })
         
     
@@ -92,16 +95,3 @@ export const signout1 = () => {
     };
 };
 
-
-export const changePin = (pin) => async dispatch => {
-    try{
-        const response = await axios.post(
-            baseUrl + '/changePin',
-            {secretpin: pin}
-        );
-        dispatch({ type: CHANGE_PIN, payload: pin})
-
-    } catch (e) {
-        dispatch({ type: AUTH_ERROR, payload: 'Error'})
-    }
-};

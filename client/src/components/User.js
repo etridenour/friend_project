@@ -11,9 +11,7 @@ import '../styles/User.css';
 class User extends React.Component {
     constructor(props) {
         super(props);
-        let uid = this.props.user.id;
     
-        this.props.findFriends(uid);
 
         let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
 
