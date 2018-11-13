@@ -32,7 +32,6 @@ class User extends React.Component {
     
     renderCards = () => {
         
-
         var colorNumber = 0
         var renderedCards = []
     
@@ -49,15 +48,12 @@ class User extends React.Component {
             </CardBody>
             </Card>)
 
-            if(colorNumber > 4){
+            if(colorNumber > 3){
                 colorNumber = 0
             }
             else{
                 colorNumber += 1
-            }
-
-            
-
+            }       
         })
 
         // console.log(renderedCards, this.props.friends)
@@ -74,14 +70,14 @@ class User extends React.Component {
                 <Navbar />
                 
                 {
-                    this.props.friends ?  <h2>Total friends: {this.props.friends.length}</h2> : null
+                    this.props.friends.length ?  <h2>Total friends: {this.props.friends.length}</h2> : null
                 }
                 
 
                 <div className='cardContainer'>
 
                 { 
-                    this.renderCards()
+                    this.props.friends.length ? this.renderCards() : null
                     
                 }
                 </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS } from './types';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS, SIGN_OUT } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -27,9 +27,10 @@ export const signin = (formProps, callback) => async dispatch => {
             baseUrl + '/signin',
             formProps
         );
-        dispatch({ type: AUTH_USER, payload: response.data })
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('friend_email', response.data.email);
+        dispatch({ type: AUTH_USER, payload: response.data.user })
+        dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
+        localStorage.setItem('token', response.data.user.token);
+        localStorage.setItem('friend_email', response.data.user.email);
 
         callback();
 
@@ -75,23 +76,14 @@ export const autoSignin = (callback) => async dispatch => {
 
 export const signout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('friend_username');
+    localStorage.removeItem('friend_email');
     return {
-        type: AUTH_USER,
-        payload: {
-            userName: ''
-        }
+        type: SIGN_OUT
     };
 };
 
-export const signout1 = () => {
+export const clearMessages = () => ({
+    type: AUTH_MESSAGE_DEL
+})
 
-    return {
-        type: AUTH_MESSAGE_DEL,
-        payload: {
-            signUpMessage: '',
-            errorMessage: ''
-        }
-    };
-};
 

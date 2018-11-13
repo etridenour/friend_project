@@ -1,10 +1,11 @@
-import { FIND_FRIENDS, AUTH_ERROR, CHANGE_PROFILE } from './types';
+import { FIND_FRIENDS, AUTH_ERROR, CHANGE_PROFILE, FIND_EMPLOYEES, CHANGE_PRIVILEGE } from './types';
 import axios from 'axios';
+import {clearMessages} from './authActions'
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
 
-
+export {clearMessages}
 
 export const findFriends = (id) => async dispatch => {
 
@@ -20,6 +21,7 @@ export const findFriends = (id) => async dispatch => {
 
 export const newFriend = (friendshipData) => async dispatch => {
 
+    console.log(friendshipData)
     try{
         const response = await axios.post(
             baseUrl + '/newFriend',
@@ -50,6 +52,49 @@ export const changeProfile = (data) => async dispatch => {
         dispatch({ type: AUTH_ERROR, payload: 'Error'})
     }
 };
+
+export const alreadyFriends = (firstName, lastName) => ({
+    type: AUTH_ERROR,
+    payload: `You are already friends with ${firstName} ${lastName}`
+}) 
+
+
+export const findEmployees = () => async dispatch => {
+
+    const response = await axios.get(
+        baseUrl + '/employees'
+    );
+    dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees });
+
+} 
+
+export const privilegeChange = (privilege, id) => async dispatch => {
+
+    const response = await axios.post(
+        baseUrl + '/privilegeChange',{
+            id: id,
+            privilege: privilege
+        }
+    )
+    .then((response) => {
+        dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees })
+        dispatch({ type: CHANGE_PRIVILEGE, payload: privilege})
+    })
+}
+
+
+export const deleteEmployee = (id) => async dispatch => {
+
+
+const response = await axios.post(
+
+    baseUrl + '/deleteEmployee',{
+        id: id
+    })
+    .then((response) => {
+        dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees })
+    })
+}
 
 
 

@@ -35,19 +35,17 @@ class AppNavbar extends React.Component {
       modal: false,
       friendModal: false,
       pin: null,
-      friendPin: null
+      friendPin: null,
+      friendId: null
     };
   }
+
+  
   
   componentWillReceiveProps = (nextProps) => {
 
     if(nextProps.user.secretpin){
       this.state.pin = nextProps.user.secretpin;
-    }
-
-    // if the modal is open, and the friends list changes, that means that a friend was added, therefore close the modal
-    if(this.state.friendModal === true && nextProps.friends != this.props.friends){
-      this.state.friendModal = false
     }
       
   }
@@ -59,6 +57,7 @@ class AppNavbar extends React.Component {
   };
 
   toggleFriendModal = () => {
+      // this.props.clearMessages();
       this.setState({
           friendModal: !this.state.friendModal
       });
@@ -94,14 +93,41 @@ class AppNavbar extends React.Component {
   onSubmitFriend = e => {
     e.preventDefault();
 
-    let newFriendData = {
-      id: this.props.user.id,
-      friendPin: this.state.friendPin
+    let alreadyFriend = false;
+    let friendFirstName = '';
+    let friendLastName = '';
+    
+    for(let friend of this.props.friends) { 
+
+      if(friend.secretpin === this.state.friendPin){
+          alreadyFriend = true;
+          friendFirstName = friend.firstName;
+          friendLastName = friend.lastName;
+          break;
+      }
+
     }
 
-    this.props.newFriend(newFriendData);
+    if(alreadyFriend === true){
 
-  };
+      this.props.alreadyFriends(friendFirstName, friendLastName)
+
+    } else {
+
+      let newFriendData = {
+        id: this.props.user.id,
+        friendPin: this.state.friendPin
+      }
+  
+      this.props.newFriend(newFriendData);
+      
+
+      this.toggleFriendModal();
+      this.props.clearMessages();
+    }
+
+  }
+  
 
   render() {
 
@@ -180,7 +206,10 @@ class AppNavbar extends React.Component {
                 <Button
                   className="cancelButton buttonStyle"
                   style={{ marginTop: "2rem" }}
-                  onClick={this.toggleFriendModal}>
+                  onClick={()=>{
+                    this.toggleFriendModal()
+                    this.props.clearMessages()
+                  }}>
                   Cancel
                 </Button>
                 <Button

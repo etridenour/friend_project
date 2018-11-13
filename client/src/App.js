@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import User from './components/User'
 import Profile from './components/Profile'
+import Employees from './components/Employees'
 import Signup from './components/Signup'
 import Signin from './components/Signin'
 import Signout from './components/Signout'
@@ -26,6 +27,7 @@ class App extends Component {
         <div>
           <Route exact path="/user" component={User}/>
           <Route exact path="/profile" component={Profile}/>
+          <Route exact path="/employees" component={Employees}/>
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/signin" component={Signin}/>
           <Route exact path="/signout" component={Signout}/>

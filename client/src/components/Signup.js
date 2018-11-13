@@ -13,6 +13,7 @@ class Signup extends Component {
 
     constructor(props){
         super(props)
+        this.props.clearMessages();
         if(props.authenticated){
             this.props.history.push('/user');
         }

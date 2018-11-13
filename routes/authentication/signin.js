@@ -5,6 +5,9 @@ const db = require('../../models');
 const bcrypt = require('bcryptjs');
 
 
+const { getFriends } = require('../findFriends')
+
+
 router.post('/signin', (req, res) => {
 
 
@@ -16,7 +19,7 @@ router.post('/signin', (req, res) => {
 
         if(results){
             const user = results[0];
-
+            console.log(user)
             if(user){
                 bcrypt.compare(password, user.password, (err, isMatch) => {
                     // console.log(err);
@@ -29,7 +32,7 @@ router.post('/signin', (req, res) => {
                         return res.json({ message: 'Bad password'})
                     }
 
-                    return res.json({
+                    let theUser = {
                         token: tokenForUser(user),
                         id: user.id,
                         firstName: user.firstName,
@@ -37,7 +40,12 @@ router.post('/signin', (req, res) => {
                         email: user.email,
                         secretpin: user.secretpin,
                         privilege: user.privilege
-                        
+                    }
+
+                    let uid = user.id;
+
+                    getFriends(uid, (friendsArray)=>{
+                        return res.json({user: theUser, friends: friendsArray })
                     })
                 })
             }

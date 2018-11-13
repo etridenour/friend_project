@@ -5,9 +5,9 @@ import {Link} from 'react-router-dom';
 
 
 class Signout extends React.Component {
-    componentWillMount = () => {
+    constructor(props){
+        super(props)
         this.props.signout();
-        this.props.signout1();
     }
     
 
