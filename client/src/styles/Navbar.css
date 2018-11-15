@@ -1,0 +1,24 @@
+.createInput{
+    width: 200px !important;
+}
+
+.buttonStyle{
+    margin-left: 20px;
+    width: 150px;
+}
+
+.addFriendButton{
+    margin-right: 20px;
+}
+
+.profile{
+    cursor: pointer;
+}
+
+.userName{
+    font-weight: bold;
+}
+
+.white{
+    color: white !important;
+}

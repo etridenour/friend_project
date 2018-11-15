@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import * as actions from './actions/authActions';
 import { connect } from 'react-redux';
 
+import Landing from './components/Landing'
 import User from './components/User'
 import Profile from './components/Profile'
 import Employees from './components/Employees'
@@ -25,6 +26,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Route exact path="/" component={Landing}/>
           <Route exact path="/user" component={User}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/employees" component={Employees}/>

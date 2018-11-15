@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../actions/authActions';
 
 import * as validation from './forms/formValidation';
 import * as fields from './forms/formFields';
-import { Link } from 'react-router-dom';
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+
+import '../styles/Signup.css';
+import q from '../img/q.png';
+
 
 
 class Signup extends Component {
@@ -17,8 +22,19 @@ class Signup extends Component {
         if(props.authenticated){
             this.props.history.push('/user');
         }
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            popoverOpen: false
+        };
         
     }
+
+    toggle() {
+        this.setState({
+            popoverOpen: !this.state.popoverOpen
+        });
+    }
+
     onSubmit = formProps => {
         this.props.signup(formProps, () => {
             this.props.history.push('/signin');
@@ -30,69 +46,69 @@ class Signup extends Component {
     const { handleSubmit } = this.props;
 
     return (
-        <div className='landingBackground'>
-
-            <form className='signForm'  onSubmit={handleSubmit(this.onSubmit)}>
-            <p className='formName'>Sign Up Here:</p>
-                <fieldset className='signField'>
-                    <label>First Name:</label>
-                    <Field
-                        id='field'
-                        name="firstName" 
-                        type="text"
-                        component={fields.inputField}
-                        validate={[validation.required]}
-                        autoComplete="none"
-                        />
-                </fieldset >
-                <fieldset className='signField'>
-                    <label>Last Name:</label>
-                    <Field
-                        id='field'
-                        name="lastName" 
-                        type="text"
-                        component={fields.inputField}
-                        validate={[validation.required]}
-                        autoComplete="none"
-                        />
-                </fieldset >
-                <fieldset className='signField'>
-                    <label>Email:</label>
-                    <Field
-                        id='field'
-                        name="email" 
-                        type="text"
-                        component={fields.inputField}
-                        validate={[validation.required, validation.email]}
-                        autoComplete="none"
-                        />
-                </fieldset >
-                <fieldset className='signField'>
-                    <label>Password:</label>
-                    <Field
-                        id='field'
-                        name="password"
-                        type="password"
-                        component={fields.inputField}
-                        validate={[validation.required, validation.minLength6]}
-                        autoComplete="none"
-                        />
-                </fieldset>
-                <fieldset className='signField'>
-                    <label>Secret Pin:</label>
-                    <Field 
-                        id='field'
-                        name="secretpin"
-                        type="text"
-                        component={fields.inputField}
-                        validate={[validation.required, validation.minLength4]}
-                        autoComplete="none"
-                        />
-                </fieldset>
-                <button id='signButton'>Sign Up</button>
-                <div>{this.props.errorMessage}</div>
-            </form>
-            <Link to='/signin' className='navLink'><p>Back to sign in</p></Link>
+        <div>
+            <div className='signupBg'></div>
+            <div className='signupBox'>
+            <h2 className='topTitle'>Name</h2>
+                <form  onSubmit={handleSubmit(this.onSubmit)}>
+                <p className='formName'>Sign Up Here:</p>
+                    <div>
+                        <label className='labels'>First Name:</label>
+                        <Field                           
+                            name="firstName" 
+                            type="text"
+                            component={fields.inputField}
+                            validate={[validation.required]}
+                            autoComplete="none"
+                            placeholder="First Name"
+                            />
+                    </div>
+                        <label className='labels'>Last Name:</label>
+                        <Field
+                            name="lastName" 
+                            type="text"
+                            component={fields.inputField}
+                            validate={[validation.required]}
+                            autoComplete="none"
+                            />
+                        <label className='labels'>Email:</label>
+                        <Field
+                            name="email" 
+                            type="text"
+                            component={fields.inputField}
+                            validate={[validation.required, validation.email]}
+                            autoComplete="none"
+                            />
+                        <label className='labels'>Password:</label>
+                        <Field
+                            name="password"
+                            type="password"
+                            component={fields.inputField}
+                            validate={[validation.required, validation.minLength6]}
+                            autoComplete="none"
+                            />
+                        <label className='labels'>Secret Pin:</label>
+                        <div className='secretpin'>
+                            <Field 
+                                name="secretpin"
+                                type="text"
+                                component={fields.inputField}
+                                validate={[validation.required, validation.minLength4]}
+                                autoComplete="none"
+                                />
+                            <img className='q' id="Popover1" src={q} onClick={this.toggle}></img>
+                            <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+                                <PopoverHeader>Secret Pin</PopoverHeader>
+                                <PopoverBody>Your secret pin will be given out to create friends. </PopoverBody>
+                            </Popover>
+                        </div>
+                    <Button color='warning' id='signButton'>Sign Up</Button>
+                    <div>{this.props.errorMessage}</div>
+                </form>
+                <div> Already have an account?</div>
+                <Link to='/signin' className='navLink'><p>Sign in here</p></Link>
+                
+            </div>
         </div>
         );
     }

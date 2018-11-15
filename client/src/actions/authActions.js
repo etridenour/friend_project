@@ -57,7 +57,7 @@ export const autoSignin = (callback) => async dispatch => {
             var user = response.data.user
             var friends = response.data.friends
             user.token = token
-    
+            
             dispatch({ type: AUTH_USER, payload: user})
             dispatch({ type: FIND_FRIENDS, payload: friends  })
         })

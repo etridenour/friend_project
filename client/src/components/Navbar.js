@@ -24,6 +24,8 @@ import {
   ModalBody,
   Col } from 'reactstrap';
 
+  import '../styles/Navbar.css';
+
 
 class AppNavbar extends React.Component {
   constructor(props) {
@@ -168,17 +170,19 @@ class AppNavbar extends React.Component {
                   Pin
                 </Label>
                 <Col md={3}>
-                  <Input name="pin" type='text' onChange={this.onChange} defaultValue={user.secretpin}></Input>
+                  <Input  className='createInput' name="pin" type='text' onChange={this.onChange} defaultValue={user.secretpin}></Input>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Button
+                  color='danger'
                   className="cancelButton buttonStyle"
                   style={{ marginTop: "2rem" }}
                   onClick={this.toggleModal}>
                   Cancel
                 </Button>
                 <Button
+                  color='success'
                   className="submitButton buttonStyle"
                   type='submit'
                   style={{ marginTop: "2rem" }}>
@@ -204,6 +208,7 @@ class AppNavbar extends React.Component {
               <FormGroup row>
                 <h2>{this.props.errorMessage}</h2>
                 <Button
+                  color='danger'
                   className="cancelButton buttonStyle"
                   style={{ marginTop: "2rem" }}
                   onClick={()=>{
@@ -213,6 +218,7 @@ class AppNavbar extends React.Component {
                   Cancel
                 </Button>
                 <Button
+                  color='success'
                   className="submitButton buttonStyle"
                   type='submit'
                   style={{ marginTop: "2rem" }}>
@@ -224,43 +230,28 @@ class AppNavbar extends React.Component {
         </Modal>
 
 
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Water Cooler</NavbarBrand>
+        <Navbar color="dark" light expand="md">
+          <NavbarBrand className='white' href="/">Water Cooler</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link to="/signup">Sign Up</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/signin">Sign In</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/signout">Sign Out</Link>
-              </NavItem>
-              <NavItem>
-                <Button onClick={this.toggleModal}>Profile</Button>
-              </NavItem>
-              <NavItem>
-                <Button onClick={this.toggleFriendModal}>Add Friend</Button>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <Button className='addFriendButton' color='success' onClick={this.toggleFriendModal}>Add Friend</Button>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
+                <DropdownToggle className='userName white' nav caret>
+                    {user.firstName} {user.lastName}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
+                  <DropdownItem className='profile' onClick={this.toggleModal}>
+                    Profile
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    <Link to="/signout">Sign Out</Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

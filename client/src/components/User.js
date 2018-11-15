@@ -4,6 +4,7 @@ import * as actions from '../actions/actions';
 import { connect } from 'react-redux';
 
 import Navbar from './Navbar'
+import NavbarAdmin from './NavbarAdmin'
 import requireAuth from './requireAuth'
 import '../styles/User.css';
 
@@ -11,7 +12,6 @@ import '../styles/User.css';
 class User extends React.Component {
     constructor(props) {
         super(props);
-    
 
         let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
 
@@ -64,13 +64,20 @@ class User extends React.Component {
     
 
     render() {
-    
+
+        var navbar;
+        if(this.props.user.privilege === 'employee'){
+        navbar = <Navbar />
+        } else {
+        navbar = <NavbarAdmin />
+        }
+       
         return (
             <div>
-                <Navbar />
+                {navbar}
                 
                 {
-                    this.props.friends.length ?  <h2>Total friends: {this.props.friends.length}</h2> : null
+                    this.props.friends.length ?  <h2>Total friends: {this.props.friends.length}</h2> : <h2>Total friends: 0</h2>
                 }
                 
 

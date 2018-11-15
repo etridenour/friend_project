@@ -1,0 +1,69 @@
+.signupBg{
+    background-image: url('../img/bg.jpg');
+    filter: blur(8px) brightness(0.4);
+    -webkit-filter: blur(5px) brightness(0.4);
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative; left: 50%;
+    transform: translateX(-50%);
+    
+}
+.formName{
+    margin-bottom: -10px;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+    text-align: center
+}
+.signupBox{
+    background-color: rgba(206, 206, 206, 0.7);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: absolute; left: 50%;
+    transform: translateX(-50%);
+    height: 750px; 
+    width: 375px;
+    bottom: 150px;
+
+    
+}
+
+.signForm{
+    background-color: rgba(206, 206, 206, 0.7);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    height: 575px; 
+    width: 375px;
+}
+
+.labels{
+    margin-bottom: -50px !important;
+    margin-top: 20px;
+}
+
+.q{
+    width: 25px;
+    cursor: pointer;
+    position: absolute;
+    right: 67px;
+    bottom: 161px;
+}
+
+#signButton{
+    margin-top: 25px;
+    text-align: center;
+}
