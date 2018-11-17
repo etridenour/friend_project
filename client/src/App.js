@@ -12,6 +12,7 @@ import Signup from './components/Signup'
 import Signin from './components/Signin'
 import Signout from './components/Signout'
 import Main from './components/Main'
+import Loading from './components/Loading'
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Route exact path="/loading" component={Loading}/>
           <Route exact path="/" component={Landing}/>
           <Route exact path="/user" component={User}/>
           <Route exact path="/profile" component={Profile}/>

@@ -3,8 +3,12 @@ import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions/authActions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
+import * as validation from './forms/formValidation';
+import * as fields from './forms/formFields';
+import '../styles/Signin.css';
 
 class SignIn extends Component {
 
@@ -23,53 +27,53 @@ class SignIn extends Component {
 
         this.props.signin(formProps, () => {
             this.props.history.push('/user');
-          });
+        });
         this.setState({
             requestHappened: true
         })
     };
     render() {
-    //this is supplied by redux-form
-    //it will provide the props about the form state and function 
-    // to handle the submit process.
+
     const { handleSubmit, errorMessage } = this.props
     const { requestHappened } = this.state
     return (
-        <div className='landingBackground'>
+        <div>
+            <div className='signinBg'></div>
+                <h2>{this.props.signUpMessage}</h2>
+                    <div className='signinBox'>
+                    <h2 className='topTitle'>Name</h2>
+                        <form className='signinForm' onSubmit={handleSubmit(this.onSubmit)}>
+                            <p className='signinFormName'>Sign In</p>
+                            
+                                <label className='signinLabels'>Email:</label>
+                                <Field
+                                    id='field'
+                                    name="email"
+                                    type="text"
+                                    component={fields.inputField}
+                                    validate={[validation.required, validation.email]}
+                                    autoComplete="none"
+                                    />
         
-
-            <h2>{this.props.signUpMessage}</h2>
-            <form className='signForm' onSubmit={handleSubmit(this.onSubmit)}>
-                <p className='formName'>Welcome Back!</p>
-                <fieldset className='signField'>
-                    <label>Email:</label>
-                    <Field
-                        id='field'
-                        name="email"
-                        type="text"
-                        component="input"
-                        //something google needs
-                        autoComplete="none"
-                        />
-                </fieldset>
-                <fieldset className='signField'>
-                    <label>Password:</label>
-                    <Field
-                        id='field'
-                        name="password"
-                        type="password"
-                        component="input"
-                        //something google needs
-                        autoComplete="none"
-                        />
-                </fieldset>
-                {/* onClick={this.onHit} */}
-                <button id='signButton' >Sign In</button>
-                <Link to='/signup' className='navLink'><p>Actually, I'm new here...</p></Link>
-                <Link to='/forgotpassword' className='navLink'><p>Forgot Password</p></Link>
-                { errorMessage? <div>{errorMessage}</div> : null}
-                { requestHappened && !errorMessage? <p> contacting server, this may take a moment</p> : null}
-            </form>
+                                <label className='signinLabels'>Password:</label>
+                                <Field
+                                    id='field'
+                                    name="password"
+                                    type="password"
+                                    component={fields.inputField}
+                                    validate={validation.required}
+                                    autoComplete="none"
+                                    />
+                        
+                
+                            <Button color='success' className='signinButton' >Sign In</Button>
+                            { errorMessage? <div className='centerText signinError'>{errorMessage}</div> : null}
+                            <Link to='/signup' className='centerText'><p>Create an account</p></Link>
+                            <Link to='/forgotpassword' className='centerText'><p>Forgot Password</p></Link>
+                            
+                            { requestHappened && !errorMessage? <p className='centerText'> contacting server, this may take a moment</p> : null}
+                        </form>
+            </div>
         </div>
         );
     }

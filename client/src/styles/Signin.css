@@ -1,4 +1,4 @@
-.signupBg{
+.signinBg{
     background-image: url('../img/bg.jpg');
     filter: blur(8px) brightness(0.4);
     -webkit-filter: blur(5px) brightness(0.4);
@@ -13,15 +13,15 @@
     transform: translateX(-50%);
     
 }
-.formName{
+.signinFormName{
     /* margin-bottom: -10px; */
     font-weight: bold;
     font-size: 20px;
     text-decoration: underline;
     text-align: center;
-    margin-bottom: -12px;
+    margin-bottom: 2px;
 }
-.signupBox{
+.signinBox{
     background-color: rgba(206, 206, 206, 0.7);
     padding: 20px;
     margin-top: 30px;
@@ -32,29 +32,17 @@
     align-items: center;
     position: absolute;
     left: 50%;
-    top: 10px;
+    top: 70px;
     transform: translateX(-50%);
-    height: 700px; 
+    height: 500px; 
     width: 375px;
     bottom: 150px;
 
     
 }
 
-.signForm{
-    background-color: rgba(206, 206, 206, 0.7);
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 30px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    height: 575px; 
-    width: 375px;
-}
 
-.labels{
+.signinLabels{
     margin-bottom: -50px !important;
     margin-top: 30px;
 }
@@ -67,8 +55,18 @@
     bottom: 193px;
 }
 
-.signButton{
-    margin-top: 40px;
-    margin-bottom: 25px;
+.signinButton{
+    margin-top: 50px;
+    margin-bottom: 40px;
     width: 250px;
+}
+
+.centerText{
+    text-align: center;
+}
+.signinError{
+    position: absolute;
+    bottom: 110px;
+    left: 102px;
+    color: red;
 }

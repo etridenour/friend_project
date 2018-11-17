@@ -44,16 +44,18 @@ export const signin = (formProps, callback) => async dispatch => {
 export const autoSignin = (callback) => async dispatch => {
     try {
 
-
+        
         var email = localStorage.getItem('friend_email')
         var token = localStorage.getItem('token')
-
+        
         if(token && email){
         const response = await axios.post(
             baseUrl + '/authenticate',
             {email: email},
             {headers: {Authorization: token}}
+            
         ).then((response)=>{
+
             var user = response.data.user
             var friends = response.data.friends
             user.token = token
@@ -61,13 +63,16 @@ export const autoSignin = (callback) => async dispatch => {
             dispatch({ type: AUTH_USER, payload: user})
             dispatch({ type: FIND_FRIENDS, payload: friends  })
         })
+        console.log('authactions try')
         
     
         callback();
+        
         }
     
 
     } catch (e) {
+        console.log('authactions catch')
         dispatch({ type: AUTH_ERROR, payload: 'Invalid login credentials' });
     }
 

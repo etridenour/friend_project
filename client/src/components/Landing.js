@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../styles/Landing.css';
 
 class Landing extends React.Component {
     constructor(props) {
         super(props);
-        if(props.authenticated){
+        if(props.user.authenticated){
             this.props.history.push('/user');
         }
         
@@ -30,5 +31,12 @@ class Landing extends React.Component {
     }
 }
 
+function mapStateToProps(state){
+    return{
+        user: state.auth
+    }
+}
 
-export default Landing
+export default connect(mapStateToProps, null)(Landing);
+
+

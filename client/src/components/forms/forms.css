@@ -2,3 +2,7 @@
     position: absolute;
     color: red;
 }
+
+.inputField{
+    width: 250px;
+}

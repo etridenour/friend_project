@@ -231,7 +231,7 @@ class AppNavbar extends React.Component {
 
 
         <Navbar color="dark" light expand="md">
-          <NavbarBrand className='white' href="/">Water Cooler</NavbarBrand>
+          <NavbarBrand className='white'>Water Cooler</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

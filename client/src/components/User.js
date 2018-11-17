@@ -41,7 +41,7 @@ class User extends React.Component {
             renderedCards.push(<Card className='card' inverse color={this.state.cardColor[colorNumber]} key={friend.id}>
             <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
             <CardBody>
-                <CardTitle>{friend.firstName}</CardTitle>
+                <CardTitle>{friend.firstName} {friend.lastName}</CardTitle>
                 <CardSubtitle>{friend.email}</CardSubtitle>
                 <CardText>Hobbies</CardText>
                 <Button>Button</Button>
@@ -56,8 +56,6 @@ class User extends React.Component {
             }       
         })
 
-        // console.log(renderedCards, this.props.friends)
-        // console.log(this.props.user.id)
 
         return renderedCards
     }
@@ -66,10 +64,10 @@ class User extends React.Component {
     render() {
 
         var navbar;
-        if(this.props.user.privilege === 'employee'){
-        navbar = <Navbar />
-        } else {
+        if(this.props.user.privilege === 'admin' || this.props.user.privilege === 'boss'){
         navbar = <NavbarAdmin />
+        } else {
+        navbar = <Navbar />
         }
        
         return (

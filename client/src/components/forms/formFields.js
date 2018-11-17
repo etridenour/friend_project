@@ -9,9 +9,8 @@ export const inputField = ({
     meta: { touched, error, warning }
   }) => (
     <div>
-      <label>{label}</label>
       <div>
-        <input {...input} placeholder={label} type={type} />
+        <input {...input} placeholder={label} className='inputField' type={type} />
         <div className='errorMessage'>
         {touched &&
           ((error && <span>{error}</span>) ||

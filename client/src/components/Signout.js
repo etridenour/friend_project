@@ -8,16 +8,13 @@ class Signout extends React.Component {
     constructor(props){
         super(props)
         this.props.signout();
+        this.props.history.push('/signin');
     }
     
 
     render() {
         return (
             <div className='landingBackground'>
-                <div className='salud'>                </div>
-                    <h2 className='signoutL'>Goodbye!</h2>
-
-                <Link to='/signin' className='navLink'><p>Sign Back In Here</p></Link>
 
             </div>
         );

@@ -52,7 +52,6 @@ class Signup extends Component {
             <h2 className='topTitle'>Name</h2>
                 <form  onSubmit={handleSubmit(this.onSubmit)}>
                 <p className='formName'>Sign Up Here:</p>
-                    <div>
                         <label className='labels'>First Name:</label>
                         <Field                           
                             name="firstName" 
@@ -60,9 +59,8 @@ class Signup extends Component {
                             component={fields.inputField}
                             validate={[validation.required]}
                             autoComplete="none"
-                            placeholder="First Name"
+                            
                             />
-                    </div>
                         <label className='labels'>Last Name:</label>
                         <Field
                             name="lastName" 
@@ -102,7 +100,7 @@ class Signup extends Component {
                                 <PopoverBody>Your secret pin will be given out to create friends. </PopoverBody>
                             </Popover>
                         </div>
-                    <Button color='warning' id='signButton'>Sign Up</Button>
+                    <Button color='warning' className='signButton'>Sign Up</Button>
                     <div>{this.props.errorMessage}</div>
                 </form>
                 <div> Already have an account?</div>
