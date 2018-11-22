@@ -1,4 +1,4 @@
-import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, SIGN_OUT, CHANGE_PROFILE } from '../actions/types';
+import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, SIGN_OUT, CHANGE_PROFILE, UPDATE_COUNT } from '../actions/types';
 
 const INITIAL_STATE = {
     authenticated: '',
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case AUTH_USER:
-            const {token, id, lastName, firstName, email, secretpin, privilege} = action.payload
+            const {token, id, lastName, firstName, email, secretpin, privilege, friendCount} = action.payload
             return{...state,
                 authenticated: token,
                 id: id,
@@ -20,6 +20,7 @@ export default (state = INITIAL_STATE, action) => {
                 email: email,
                 secretpin: secretpin,
                 privilege: privilege,
+                friendCount: friendCount,
                 signUpMessage: '',
                 errorMessage: ''
             };
@@ -50,6 +51,7 @@ export default (state = INITIAL_STATE, action) => {
                 email: '',
                 authenticated: '',
                 id: '',
+                friendCount:'',
                 firstName: '',
                 lastName: '',
                 secretpin: '',
@@ -62,6 +64,11 @@ export default (state = INITIAL_STATE, action) => {
                 firstName: action.payload.newFirstName,
                 lastName: action.payload.newLastName
             };
+
+        case UPDATE_COUNT:
+            return {...state,
+                friendCount: action.payload
+            }
 
         default:
             return state;

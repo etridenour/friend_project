@@ -39,8 +39,9 @@ class SignIn extends Component {
     return (
         <div>
             <div className='signinBg'></div>
-                <h2>{this.props.signUpMessage}</h2>
+                
                     <div className='signinBox'>
+                    <h4 className='signUpMessage'>{this.props.signUpMessage}</h4>
                     <h2 className='topTitle'>Name</h2>
                         <form className='signinForm' onSubmit={handleSubmit(this.onSubmit)}>
                             <p className='signinFormName'>Sign In</p>

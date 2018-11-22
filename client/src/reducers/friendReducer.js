@@ -1,4 +1,4 @@
-import { FIND_FRIENDS, FIND_EMPLOYEES } from '../actions/types';
+import { FIND_FRIENDS } from '../actions/types';
 
 const INITIAL_STATE = []
 

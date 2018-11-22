@@ -20,14 +20,20 @@ router.post('/newFriend', (req, res)=>{
     .then(results => {
         if(results.length){
 
-            const friend1 = parseInt(req.body.friendshipData.id)
-            const friend2 = parseInt(results[0].dataValues.id)
+            const friend1 = parseInt(req.body.friendshipData.id);
+            const friend2 = parseInt(results[0].dataValues.id);
+            // let friendCount = req.body.friendshipData.friendCount;
+
+            // db[USER].update({
+            //     friendCount: friendCount += 1
+            // },
+            // {where: {id: friend1}})
 
             db[FRIENDSHIP].create({
                 friend1: friend1,
                 friend2: friend2
                 }).then(results => {
-    
+                console.log(results)
                 const createdFriendship = results.dataValues
     
                 // if the friendship was added, join the users together
@@ -43,7 +49,8 @@ router.post('/newFriend', (req, res)=>{
                     
                         if(result.dataValues.friend){
                             getFriends(friend1, (friendsAarray)=>{
-                                res.json({friends: friendsAarray})
+                                res.json({friends: friendsAarray,
+                                        friendCount: friendCount})
                             })
                         }
                         
