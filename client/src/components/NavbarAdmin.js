@@ -9,7 +9,6 @@ NavbarToggler,
 NavbarBrand,
 Nav,
 NavItem,
-NavLink,
 UncontrolledDropdown,
 DropdownToggle,
 DropdownMenu,
@@ -96,6 +95,7 @@ onSubmitFriend = e => {
     e.preventDefault();
 
     let alreadyFriend = false;
+    let thisIsMe = false;
     let friendFirstName = '';
     let friendLastName = '';
     
@@ -106,18 +106,26 @@ onSubmitFriend = e => {
         friendFirstName = friend.firstName;
         friendLastName = friend.lastName;
         break;
+    } else if (this.props.user.secretpin === this.state.friendPin){
+        thisIsMe = true;
     }
 
     }
 
-    if(alreadyFriend === true){
 
-    this.props.alreadyFriends(friendFirstName, friendLastName)
+    if(thisIsMe === true) {
+
+        this.props.thisIsMe();
+
+    } else if(alreadyFriend === true){
+
+        this.props.alreadyFriends(friendFirstName, friendLastName)
 
     } else {
 
     let newFriendData = {
         id: this.props.user.id,
+        friendCount: this.props.user.friendCount,
         friendPin: this.state.friendPin
     }
 
@@ -230,7 +238,7 @@ render() {
         </Modal>
 
 
-        <Navbar color="dark" light expand="md">
+        <Navbar color="dark" className='fixedTop' light expand="md">
         <NavbarBrand className='white'>Water Cooler</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>

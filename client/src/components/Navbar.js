@@ -9,7 +9,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -96,6 +95,7 @@ class AppNavbar extends React.Component {
     e.preventDefault();
 
     let alreadyFriend = false;
+    let thisIsMe = false;
     let friendFirstName = '';
     let friendLastName = '';
     
@@ -106,11 +106,18 @@ class AppNavbar extends React.Component {
           friendFirstName = friend.firstName;
           friendLastName = friend.lastName;
           break;
+      } else if (this.props.user.secretpin === this.state.friendPin){
+          thisIsMe = true;
       }
 
     }
 
-    if(alreadyFriend === true){
+
+    if(thisIsMe === true) {
+
+      this.props.thisIsMe();
+
+    } else if(alreadyFriend === true){
 
       this.props.alreadyFriends(friendFirstName, friendLastName)
 
@@ -118,6 +125,7 @@ class AppNavbar extends React.Component {
 
       let newFriendData = {
         id: this.props.user.id,
+        friendCount: this.props.user.friendCount,
         friendPin: this.state.friendPin
       }
   

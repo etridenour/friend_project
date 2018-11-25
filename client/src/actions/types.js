@@ -3,6 +3,7 @@ export const FIND_FRIENDS = 'find_friends';
 export const ERASE_FRIENDS = 'erase_friends';
 export const FIND_EMPLOYEES = 'find_employees';
 export const CHANGE_PRIVILEGE = 'change_privilege';
+export const UPDATE_COUNT = 'update_count';
 
 
 

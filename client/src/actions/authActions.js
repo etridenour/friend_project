@@ -27,6 +27,7 @@ export const signin = (formProps, callback) => async dispatch => {
             baseUrl + '/signin',
             formProps
         );
+        console.log(response)
         dispatch({ type: AUTH_USER, payload: response.data.user })
         dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
         localStorage.setItem('token', response.data.user.token);
@@ -59,11 +60,10 @@ export const autoSignin = (callback) => async dispatch => {
             var user = response.data.user
             var friends = response.data.friends
             user.token = token
-            
+    
             dispatch({ type: AUTH_USER, payload: user})
             dispatch({ type: FIND_FRIENDS, payload: friends  })
         })
-        console.log('authactions try')
         
     
         callback();

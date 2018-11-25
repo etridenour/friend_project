@@ -32,7 +32,8 @@ router.post('/signup', (req, res) => {
                 email: email,
                 password: password,
                 secretpin: secretpin,
-                privilege: 'employee'
+                privilege: 'employee',
+                friendCount: 0
             })
             .then((user) => {
                 return res.json({token: tokenForUser(user)})

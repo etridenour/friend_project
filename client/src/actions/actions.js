@@ -1,4 +1,4 @@
-import { FIND_FRIENDS, AUTH_ERROR, CHANGE_PROFILE, FIND_EMPLOYEES, CHANGE_PRIVILEGE } from './types';
+import { FIND_FRIENDS, AUTH_ERROR, CHANGE_PROFILE, FIND_EMPLOYEES, CHANGE_PRIVILEGE, UPDATE_COUNT } from './types';
 import axios from 'axios';
 import {clearMessages} from './authActions'
 
@@ -21,15 +21,18 @@ export const findFriends = (id) => async dispatch => {
 
 export const newFriend = (friendshipData) => async dispatch => {
 
-    console.log(friendshipData)
     try{
         const response = await axios.post(
             baseUrl + '/newFriend',
             {friendshipData: friendshipData}
         );
     
+        console.log(response)
         if(response.data.friends){
             var friends = response.data.friends
+            var friendCount = response.data.friendCount
+            
+            dispatch({type: UPDATE_COUNT, payload: friendCount})
             dispatch({type: FIND_FRIENDS, payload: friends})
         
 
@@ -56,6 +59,11 @@ export const changeProfile = (data) => async dispatch => {
 export const alreadyFriends = (firstName, lastName) => ({
     type: AUTH_ERROR,
     payload: `You are already friends with ${firstName} ${lastName}`
+}) 
+
+export const thisIsMe = () => ({
+    type: AUTH_ERROR,
+    payload: `Nice try.`
 }) 
 
 
@@ -91,7 +99,9 @@ const response = await axios.post(
     baseUrl + '/deleteEmployee',{
         id: id
     })
+    console.log('not in')
     .then((response) => {
+        console.log('its in')
         dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees })
     })
 }
