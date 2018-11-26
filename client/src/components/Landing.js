@@ -17,13 +17,14 @@ class Landing extends React.Component {
     render() {
         return (
             <div>
-                <div className='main'>
-                <h2 className='landingTitle '>Name</h2>
-                <p className='underTitle'>Bringing co-workers together</p>
-                    <div className='buttonsBox'>
-                        <Link to="/signup"><Button className='buttons' color='primary'>Sign Up</Button></Link>
-                        <Link to="/signin"><Button className='buttons' color='success'>Sign In</Button></Link>
-                    </div>
+                <div className='main'></div>
+                <div className='textBox'>
+                    <h2 className='landingTitle'>Water Cooler</h2>
+                    <p className='underTitle'>Bringing co-workers together</p>
+                        <div className='buttonsBox'>
+                            <Link to="/signup"><Button className='buttons' color='primary'>Sign Up</Button></Link>
+                            <Link to="/signin"><Button className='buttons' color='success'>Sign In</Button></Link>
+                        </div>
                 </div>
 
             </div>

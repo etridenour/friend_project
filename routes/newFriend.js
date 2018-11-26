@@ -22,12 +22,12 @@ router.post('/newFriend', (req, res)=>{
 
             const friend1 = parseInt(req.body.friendshipData.id);
             const friend2 = parseInt(results[0].dataValues.id);
-            // let friendCount = req.body.friendshipData.friendCount;
+            let friendCount = req.body.friendshipData.friendCount;
 
-            // db[USER].update({
-            //     friendCount: friendCount += 1
-            // },
-            // {where: {id: friend1}})
+            db[USER].update({
+                friendCount: friendCount += 1
+            },
+            {where: {id: friend1}})
 
             db[FRIENDSHIP].create({
                 friend1: friend1,

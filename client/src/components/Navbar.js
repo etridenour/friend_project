@@ -36,8 +36,9 @@ class AppNavbar extends React.Component {
       modal: false,
       friendModal: false,
       pin: null,
-      friendPin: null,
-      friendId: null
+      friendPin: '',
+      friendId: null,
+      friendSucceed: false
     };
   }
 
@@ -60,7 +61,8 @@ class AppNavbar extends React.Component {
   toggleFriendModal = () => {
       // this.props.clearMessages();
       this.setState({
-          friendModal: !this.state.friendModal
+          friendModal: !this.state.friendModal,
+          friendSucceed: false
       });
   };
 
@@ -72,7 +74,10 @@ class AppNavbar extends React.Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value,
+      friendSucceed: false
+    });
   };
 
   onSubmit = e => {
@@ -106,12 +111,12 @@ class AppNavbar extends React.Component {
           friendFirstName = friend.firstName;
           friendLastName = friend.lastName;
           break;
-      } else if (this.props.user.secretpin === this.state.friendPin){
-          thisIsMe = true;
-      }
-
+      } 
     }
 
+    if (this.props.user.secretpin === this.state.friendPin){
+      thisIsMe = true;
+    }
 
     if(thisIsMe === true) {
 
@@ -130,10 +135,12 @@ class AppNavbar extends React.Component {
       }
   
       this.props.newFriend(newFriendData);
-      
-
-      this.toggleFriendModal();
       this.props.clearMessages();
+      this.setState({
+        friendPin: '',
+        friendSucceed: true
+      })
+
     }
 
   }
@@ -209,16 +216,23 @@ class AppNavbar extends React.Component {
                 <Label className="modalLabels" for="nameOfEvent" md={3}>
                   Friend Pin
                 </Label>
+                <Col md={5}>
+                  <Input value={this.state.friendPin} className='createInput' name='friendPin' type='text' onChange={this.onChange}></Input>
+                </Col>
                 <Col md={3}>
-                  <Input className='createInput' name='friendPin' type='text' onChange={this.onChange}></Input>
+                  { this.state.friendSucceed ? <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                  </svg> : null }
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <h2>{this.props.errorMessage}</h2>
+                <h4 className='addFriendError'>{this.props.errorMessage}</h4>
+              </FormGroup>
+              <FormGroup row>
                 <Button
                   color='danger'
                   className="cancelButton buttonStyle"
-                  style={{ marginTop: "2rem" }}
                   onClick={()=>{
                     this.toggleFriendModal()
                     this.props.clearMessages()
@@ -228,9 +242,17 @@ class AppNavbar extends React.Component {
                 <Button
                   color='success'
                   className="submitButton buttonStyle"
-                  type='submit'
-                  style={{ marginTop: "2rem" }}>
+                  type='submit'>
                   Add Friend
+                </Button>
+                <Button
+                  color='warning'
+                  className="cancelButton buttonStyle"
+                  onClick={()=>{
+                    this.toggleFriendModal()
+                    this.props.clearMessages()
+                  }}>
+                  Done
                 </Button>
               </FormGroup>
             </Form>

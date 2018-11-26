@@ -49,7 +49,7 @@ class Signup extends Component {
         <div>
             <div className='signupBg'></div>
             <div className='signupBox'>
-            <h2 className='topTitle'>Name</h2>
+            <h2 className='topTitle'>Water Cooler</h2>
                 <form  onSubmit={handleSubmit(this.onSubmit)}>
                 <p className='formName'>Sign Up Here:</p>
                         <label className='labels'>First Name:</label>
@@ -94,16 +94,16 @@ class Signup extends Component {
                                 validate={[validation.required, validation.minLength4]}
                                 autoComplete="none"
                                 />
-                            <img className='q' id="Popover1" src={q} onClick={this.toggle}></img>
+                            <img className='q2' id="Popover1" src={q} onClick={this.toggle}></img>
                             <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
                                 <PopoverHeader>Secret Pin</PopoverHeader>
                                 <PopoverBody>Your secret pin will be given out to create friends. </PopoverBody>
                             </Popover>
                         </div>
                     <Button color='warning' className='signButton'>Sign Up</Button>
-                    <div>{this.props.errorMessage}</div>
                 </form>
-                <div> Already have an account?</div>
+                <div className='signinErrorMessage'>{this.props.errorMessage}</div>
+                <div className='haveAccount '> Already have an account?</div>
                 <Link to='/signin' className='navLink'><p>Sign in here</p></Link>
                 
             </div>

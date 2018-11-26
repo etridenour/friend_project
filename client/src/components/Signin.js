@@ -42,7 +42,7 @@ class SignIn extends Component {
                 
                     <div className='signinBox'>
                     <h4 className='signUpMessage'>{this.props.signUpMessage}</h4>
-                    <h2 className='topTitle'>Name</h2>
+                    <h2 className='topTitle'>Water Cooler</h2>
                         <form className='signinForm' onSubmit={handleSubmit(this.onSubmit)}>
                             <p className='signinFormName'>Sign In</p>
                             
@@ -71,7 +71,6 @@ class SignIn extends Component {
                             { errorMessage? <div className='centerText signinError'>{errorMessage}</div> : null}
                             <Link to='/signup' className='centerText'><p>Create an account</p></Link>
                             <Link to='/forgotpassword' className='centerText'><p>Forgot Password</p></Link>
-                            
                             { requestHappened && !errorMessage? <p className='centerText'> contacting server, this may take a moment</p> : null}
                         </form>
             </div>

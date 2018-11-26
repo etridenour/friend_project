@@ -27,7 +27,6 @@ export const newFriend = (friendshipData) => async dispatch => {
             {friendshipData: friendshipData}
         );
     
-        console.log(response)
         if(response.data.friends){
             var friends = response.data.friends
             var friendCount = response.data.friendCount
@@ -99,12 +98,9 @@ const response = await axios.post(
     baseUrl + '/deleteEmployee',{
         id: id
     })
-    console.log('not in')
-    .then((response) => {
-        console.log('its in')
         dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees })
-    })
 }
+
 
 
 

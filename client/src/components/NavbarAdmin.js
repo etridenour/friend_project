@@ -32,66 +32,71 @@ constructor(props) {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-    isOpen: false,
-    modal: false,
-    friendModal: false,
-    pin: null,
-    friendPin: null,
-    friendId: null
+      isOpen: false,
+      modal: false,
+      friendModal: false,
+      pin: null,
+      friendPin: '',
+      friendId: null,
+      friendSucceed: false
     };
-}
+  }
 
-
-
-componentWillReceiveProps = (nextProps) => {
+  
+  
+  componentWillReceiveProps = (nextProps) => {
 
     if(nextProps.user.secretpin){
-    this.state.pin = nextProps.user.secretpin;
+      this.state.pin = nextProps.user.secretpin;
     }
-    
-}
+      
+  }
 
-toggleModal = () => {
+  toggleModal = () => {
+      this.setState({
+          modal: !this.state.modal
+      });
+  };
+
+  toggleFriendModal = () => {
+      // this.props.clearMessages();
+      this.setState({
+          friendModal: !this.state.friendModal,
+          friendSucceed: false
+      });
+  };
+
+
+  toggle() {
     this.setState({
-        modal: !this.state.modal
+      isOpen: !this.state.isOpen
     });
-};
+  }
 
-toggleFriendModal = () => {
-    // this.props.clearMessages();
-    this.setState({
-        friendModal: !this.state.friendModal
+  onChange = e => {
+    this.setState({ 
+      [e.target.name]: e.target.value,
+      friendSucceed: false
     });
-};
+  };
 
-
-toggle() {
-    this.setState({
-    isOpen: !this.state.isOpen
-    });
-}
-
-onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-};
-
-onSubmit = e => {
+  onSubmit = e => {
     e.preventDefault();
 
     let newPinData = {
-    id: this.props.user.id,
-    pin: this.state.pin,
-    newFirstName: this.state.firstName,
-    newLastName: this.state.lastName
+      id: this.props.user.id,
+      pin: this.state.pin,
+      newFirstName: this.state.firstName,
+      newLastName: this.state.lastName
     }
     
     this.props.changeProfile(newPinData);
 
     this.toggleModal();
 
-};
+  };
 
-onSubmitFriend = e => {
+  onSubmitFriend = e => {
     e.preventDefault();
 
     let alreadyFriend = false;
@@ -101,42 +106,44 @@ onSubmitFriend = e => {
     
     for(let friend of this.props.friends) { 
 
-    if(friend.secretpin === this.state.friendPin){
-        alreadyFriend = true;
-        friendFirstName = friend.firstName;
-        friendLastName = friend.lastName;
-        break;
-    } else if (this.props.user.secretpin === this.state.friendPin){
-        thisIsMe = true;
+      if(friend.secretpin === this.state.friendPin){
+          alreadyFriend = true;
+          friendFirstName = friend.firstName;
+          friendLastName = friend.lastName;
+          break;
+      } 
     }
 
+    if (this.props.user.secretpin === this.state.friendPin){
+      thisIsMe = true;
     }
-
 
     if(thisIsMe === true) {
 
-        this.props.thisIsMe();
+      this.props.thisIsMe();
 
     } else if(alreadyFriend === true){
 
-        this.props.alreadyFriends(friendFirstName, friendLastName)
+      this.props.alreadyFriends(friendFirstName, friendLastName)
 
     } else {
 
-    let newFriendData = {
+      let newFriendData = {
         id: this.props.user.id,
         friendCount: this.props.user.friendCount,
         friendPin: this.state.friendPin
+      }
+  
+      this.props.newFriend(newFriendData);
+      this.props.clearMessages();
+      this.setState({
+        friendPin: '',
+        friendSucceed: true
+      })
+
     }
 
-    this.props.newFriend(newFriendData);
-    
-
-    this.toggleFriendModal();
-    this.props.clearMessages();
-    }
-
-}
+  }
 
 
 render() {
@@ -202,40 +209,56 @@ render() {
         </Modal>
 
         <Modal isOpen={this.state.friendModal} toggle={this.toggleFriendModal}>
-        <ModalHeader className='eventConfirmationForm1' toggle={this.toggleFriendModal}>New Friend</ModalHeader>
-        <ModalBody className='eventConfirmationForm2'>
+          <ModalHeader className='eventConfirmationForm1' toggle={this.toggleFriendModal}>New Friend</ModalHeader>
+          <ModalBody className='eventConfirmationForm2'>
             <Form  onSubmit={this.onSubmitFriend}>
-            <FormGroup row>
+              <FormGroup row>
                 <Label className="modalLabels" for="nameOfEvent" md={3}>
-                Friend Pin
+                  Friend Pin
                 </Label>
-                <Col md={3}>
-                <Input className='createInput' name='friendPin' type='text' onChange={this.onChange}></Input>
+                <Col md={5}>
+                  <Input value={this.state.friendPin} className='createInput' name='friendPin' type='text' onChange={this.onChange}></Input>
                 </Col>
-            </FormGroup>
-            <FormGroup row>
-                <h2>{this.props.errorMessage}</h2>
+                <Col md={3}>
+                  { this.state.friendSucceed ? <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                  </svg> : null }
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <h4 className='addFriendError'>{this.props.errorMessage}</h4>
+              </FormGroup>
+              <FormGroup row>
                 <Button
-                color='danger'
-                className="cancelButton buttonStyle"
-                style={{ marginTop: "2rem" }}
-                onClick={()=>{
+                  color='danger'
+                  className="cancelButton buttonStyle"
+                  onClick={()=>{
                     this.toggleFriendModal()
                     this.props.clearMessages()
-                }}>
-                Cancel
+                  }}>
+                  Cancel
                 </Button>
                 <Button
-                color='success'
-                className="submitButton buttonStyle"
-                type='submit'
-                style={{ marginTop: "2rem" }}>
-                Add Friend
+                  color='success'
+                  className="submitButton buttonStyle"
+                  type='submit'>
+                  Add Friend
                 </Button>
-            </FormGroup>
+                <Button
+                  color='warning'
+                  className="cancelButton buttonStyle"
+                  onClick={()=>{
+                    this.toggleFriendModal()
+                    this.props.clearMessages()
+                  }}>
+                  Done
+                </Button>
+              </FormGroup>
             </Form>
-        </ModalBody>
+          </ModalBody>
         </Modal>
+
 
 
         <Navbar color="dark" className='fixedTop' light expand="md">

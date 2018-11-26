@@ -1,8 +1,8 @@
 .signinBg{
     background-image: url('../img/bg.jpg');
     filter: blur(8px) brightness(0.4);
-    -webkit-filter: blur(5px) brightness(0.4);
-    height: 90vh;
+    -webkit-filter: blur(5px) brightness(0.7);
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -11,6 +11,7 @@
     position: relative; 
     left: 50%;
     transform: translateX(-50%);
+    overflow: auto;
     
 }
 .signinFormName{
@@ -71,5 +72,6 @@
     color: red;
 }
 .signUpMessage{
+    margin-top: 10px;
     color: red;
 }
