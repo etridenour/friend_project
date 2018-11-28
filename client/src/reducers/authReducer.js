@@ -3,7 +3,8 @@ import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, SIGN_OUT, CHANGE
 const INITIAL_STATE = {
     authenticated: '',
     errorMessage: '',
-    privilege: ''
+    privilege: '',
+    friendSuccess: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,7 +23,8 @@ export default (state = INITIAL_STATE, action) => {
                 privilege: privilege,
                 friendCount: friendCount,
                 signUpMessage: '',
-                errorMessage: ''
+                errorMessage: '',
+                friendSuccess: null
             };
             
 
@@ -40,7 +42,8 @@ export default (state = INITIAL_STATE, action) => {
         case AUTH_MESSAGE_DEL:
             return {...state,
                 signUpMessage: '',
-                errorMessage: ''
+                errorMessage: '',
+                friendSuccess: null
             };
 
 
@@ -67,7 +70,8 @@ export default (state = INITIAL_STATE, action) => {
 
         case UPDATE_COUNT:
             return {...state,
-                friendCount: action.payload
+                friendCount: action.payload,
+                friendSuccess: true
             }
 
         default:

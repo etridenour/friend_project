@@ -21,6 +21,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  Alert,
   Col } from 'reactstrap';
 
   import '../styles/Navbar.css';
@@ -37,8 +38,7 @@ class AppNavbar extends React.Component {
       friendModal: false,
       pin: null,
       friendPin: '',
-      friendId: null,
-      friendSucceed: false
+      friendId: null
     };
   }
 
@@ -49,6 +49,8 @@ class AppNavbar extends React.Component {
     if(nextProps.user.secretpin){
       this.state.pin = nextProps.user.secretpin;
     }
+
+    
       
   }
 
@@ -61,8 +63,7 @@ class AppNavbar extends React.Component {
   toggleFriendModal = () => {
       // this.props.clearMessages();
       this.setState({
-          friendModal: !this.state.friendModal,
-          friendSucceed: false
+          friendModal: !this.state.friendModal
       });
   };
 
@@ -74,9 +75,9 @@ class AppNavbar extends React.Component {
   }
 
   onChange = e => {
+    this.props.clearMessages();
     this.setState({ 
-      [e.target.name]: e.target.value,
-      friendSucceed: false
+      [e.target.name]: e.target.value
     });
   };
 
@@ -137,18 +138,19 @@ class AppNavbar extends React.Component {
       this.props.newFriend(newFriendData);
       this.props.clearMessages();
       this.setState({
-        friendPin: '',
-        friendSucceed: true
+        friendPin: ''
       })
 
     }
 
   }
+
   
 
   render() {
-
+    
     const {user} = this.props;
+
 
     return (
       <div>
@@ -209,25 +211,20 @@ class AppNavbar extends React.Component {
         </Modal>
 
         <Modal isOpen={this.state.friendModal} toggle={this.toggleFriendModal}>
-          <ModalHeader className='eventConfirmationForm1' toggle={this.toggleFriendModal}>New Friend</ModalHeader>
+          <ModalHeader className='friendModal' toggle={this.toggleFriendModal}>New Friend</ModalHeader>
           <ModalBody className='eventConfirmationForm2'>
             <Form  onSubmit={this.onSubmitFriend}>
               <FormGroup row>
-                <Label className="modalLabels" for="nameOfEvent" md={3}>
+                <Label className="friendLabel" for="nameOfEvent" md={3}>
                   Friend Pin
                 </Label>
                 <Col md={5}>
-                  <Input value={this.state.friendPin} className='createInput' name='friendPin' type='text' onChange={this.onChange}></Input>
-                </Col>
-                <Col md={3}>
-                  { this.state.friendSucceed ? <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
-                  </svg> : null }
+                  <Input value={this.state.friendPin} className='pinInput' name='friendPin' type='text' onChange={this.onChange}></Input>
                 </Col>
               </FormGroup>
-              <FormGroup row>
-                <h4 className='addFriendError'>{this.props.errorMessage}</h4>
+              <FormGroup className='messages' row>
+                { this.props.user.friendSuccess ? <h5 className='addFriendSuccess'>Friend added</h5> : null }
+                <h5 className='addFriendError'>{this.props.errorMessage}</h5>
               </FormGroup>
               <FormGroup row>
                 <Button
