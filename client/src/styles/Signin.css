@@ -67,11 +67,14 @@
 }
 .signinError{
     position: absolute;
-    bottom: 110px;
+    bottom: 98px;
     left: 102px;
     color: red;
 }
 .signUpMessage{
     margin-top: 10px;
     color: red;
+}
+.forgotPassword{
+    visibility: hidden
 }

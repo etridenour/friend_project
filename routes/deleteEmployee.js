@@ -47,8 +47,8 @@ router.post('/deleteEmployee', (req, res) => {
         console.log('check 2')
 
         db.users_friendships.destroy(
-            {where: {friend: results.map((e) => {
-                return e.dataValues.friend2
+            {where: {friendship: results.map((e) => {
+                return e.dataValues.id
             })}})
 
         db.users_friendships.destroy(

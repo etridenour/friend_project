@@ -25,12 +25,12 @@ class SignIn extends Component {
 
     onSubmit = formProps => {
 
-        this.props.signin(formProps, () => {
-            this.props.history.push('/user');
-        });
         this.setState({
             requestHappened: true
         })
+        this.props.signin(formProps, () => {
+            this.props.history.push('/user');
+        });
     };
     render() {
 
@@ -70,7 +70,7 @@ class SignIn extends Component {
                             <Button color='success' className='signinButton' >Sign In</Button>
                             { errorMessage? <div className='centerText signinError'>{errorMessage}</div> : null}
                             <Link to='/signup' className='centerText'><p>Create an account</p></Link>
-                            <Link to='/forgotpassword' className='centerText'><p>Forgot Password</p></Link>
+                            <Link to='/forgotpassword' className='centerText forgotPassword'><p>Forgot Password</p></Link>
                             { requestHappened && !errorMessage? <p className='centerText'> contacting server, this may take a moment</p> : null}
                         </form>
             </div>
