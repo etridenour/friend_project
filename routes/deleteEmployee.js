@@ -5,29 +5,27 @@ const {
     USER,
 } = require('../dbConstants')
 
+const { getFriends } = require('./findFriends')
+
 
 router.post('/deleteEmployee', (req, res) => {
     console.log('check 1')
     let id = req.body.id;
-    console.log(id)
+    let adminId = req.body.adminId;
 
     //lowers friend count of deleted employee friends by one
     db.friendships.findAll({
         where: {friend2: id}
     })
     .then(results => {
-        results.map((e) => {
-            console.log(e.dataValues.friend1)
-        })
+
         db.users.findAll({
             where: {id: results.map((e) => {
                 return e.dataValues.friend1
             })}
         })
         .then(results => {
-            results.map((e) => {
-                console.log(e.dataValues.friendCount)
-            })
+
             results.map((e) => {
                 db.users.update({
                     friendCount: e.dataValues.friendCount -= 1
@@ -73,8 +71,12 @@ router.post('/deleteEmployee', (req, res) => {
 
                         var employees = results;
 
-                            res.json({ employees: employees })
+                        getFriends(adminId, (friendsArray)=>{
                         
+                            res.json({ employees: employees,
+                                friends: friendsArray
+                            })
+                        })
                     })  
                 })
             })

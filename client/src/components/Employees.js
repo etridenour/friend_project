@@ -199,7 +199,7 @@ class Employees extends React.Component {
                                 </FormGroup>
                                 <Button  className='empButton' color='warning' onClick={() => this.toggle()}>Cancel</Button>
                                 <Button  className='empButton' color='danger' onClick={() => {
-                                    this.props.deleteEmployee(this.state.id);
+                                    this.props.deleteEmployee(this.state.id, this.props.user.id);
                                     this.toggle();
                                     }}>Delete</Button>
                             </ModalBody>

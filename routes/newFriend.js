@@ -48,10 +48,10 @@ router.post('/newFriend', (req, res)=>{
                         
                     
                         if(result.dataValues.friend){
-                            getFriends(friend1, (friendsAarray)=>{
-                                res.json({friends: friendsAarray,
+                            getFriends(friend1, (friendsArray)=>{
+                                res.json({friends: friendsArray,
                                         friendCount: friendCount,
-                                    })
+                                })
                             })
                         }
                         

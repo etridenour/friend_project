@@ -90,15 +90,17 @@ export const privilegeChange = (privilege, id) => async dispatch => {
 }
 
 
-export const deleteEmployee = (id) => async dispatch => {
+export const deleteEmployee = (id, adminId) => async dispatch => {
 
 
 const response = await axios.post(
 
     baseUrl + '/deleteEmployee',{
-        id: id
+        id: id,
+        adminId: adminId
     })
         dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees })
+        dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
 }
 
 
