@@ -1,11 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../../config.js');
 const db = require('../../models');
+const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 
 
 const { getFriends } = require('../findFriends')
+
+tokenForUser = (user) => {
+
+    const timestamp = new Date().getTime();
+    return jwt.encode({sub: user.id, iat: timestamp}, process.env.SECRET_WEB_TOKEN)
+    
+}
 
 
 router.post('/signin', (req, res) => {

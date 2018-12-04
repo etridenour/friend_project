@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jwt-simple');
-const config = require('../../config.js');
 const db = require('../../models');
 const bcrypt = require('bcryptjs');
 
@@ -9,7 +8,7 @@ const bcrypt = require('bcryptjs');
 tokenForUser = (user) => {
 
     const timestamp = new Date().getTime();
-    return jwt.encode({sub: user.id, iat: timestamp}, config.secret)
+    return jwt.encode({sub: user.id, iat: timestamp}, process.env.SECRET_WEB_TOKEN)
     
 }
 
