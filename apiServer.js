@@ -15,6 +15,12 @@ app.use(require('./routes/authentication/signin'));
 app.use(require('./routes/authentication/authenticate'));
 app.use(require('./routes/authentication/changeProfile'));
 
+app.use('/static', express.static(path.join(__dirname, 'client', 'public')))
 
+if(process.env.NODE_ENV === "production"){
+    app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'public', 'index.html')))
+}
 
-app.listen(4000);
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, function () { console.log("\n\n===== listening for requests on port " + PORT + " =====\n\n") })
