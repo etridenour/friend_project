@@ -19,10 +19,10 @@ app.use(require('./routes/authentication/signin'));
 app.use(require('./routes/authentication/authenticate'));
 app.use(require('./routes/authentication/changeProfile'));
 
-app.use('/static', express.static(path.join(__dirname, 'client', 'public')))
+app.use('/static', express.static(path.join(__dirname, 'client', 'build')))
 
 if(process.env.NODE_ENV === "production"){
-    app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'public', 'index.html')))
+    app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')))
 }
 
 const PORT = process.env.PORT || 4000;
