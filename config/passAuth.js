@@ -1,5 +1,4 @@
 const passport = require('passport');
-const config = require('../config');
 const db = require('../models');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -10,7 +9,7 @@ const LocalStrategy = require('passport-local');
 const jwtOptions = {
 
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: config.secret
+    secretOrKey: process.env.SECRET_WEB_TOKEN
 
 };
 
