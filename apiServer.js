@@ -19,6 +19,8 @@ app.use(require('./routes/authentication/signup'));
 app.use(require('./routes/authentication/signin'));
 app.use(require('./routes/authentication/authenticate'));
 app.use(require('./routes/authentication/changeProfile'));
+app.use(require('./routes/authentication/forgotPassword'));
+app.use(require('./routes/authentication/savePassword'));
 
 
 if(process.env.NODE_ENV === "production"){

@@ -69,7 +69,7 @@ export const thisIsMe = () => ({
 export const findEmployees = () => async dispatch => {
 
     const response = await axios.get(
-        baseUrl + '/employees'
+        baseUrl + '/api/employees'
     );
     dispatch({ type: FIND_EMPLOYEES, payload: response.data.employees });
 

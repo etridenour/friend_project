@@ -27,7 +27,6 @@ export const signin = (formProps, callback) => async dispatch => {
             baseUrl + '/signin',
             formProps
         );
-        console.log(response)
         dispatch({ type: AUTH_USER, payload: response.data.user })
         dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
         localStorage.setItem('token', response.data.user.token);
@@ -90,5 +89,36 @@ export const signout = () => {
 export const clearMessages = () => ({
     type: AUTH_MESSAGE_DEL
 })
+
+export const forgotPassword = (formProps, callback) => async dispatch => {
+    console.log('in auth actions')
+    try {
+        const response = await axios.post(
+        baseUrl + '/api/forgotPassword',
+        formProps
+        )
+    console.log(response)
+
+    callback();
+
+    } catch (e) {
+    dispatch({ type: AUTH_ERROR, payload: 'Email address not in our database.' });
+    }
+};
+
+export const savePassword = (data, callback) => async dispatch => {
+
+try {
+    const response = await axios.post(
+        baseUrl + '/api/savePassword',
+        data
+    )
+    
+    callback();
+
+} catch (e) {
+    dispatch({ type: AUTH_ERROR, payload: 'Please enter new password.' });
+}
+};
 
 

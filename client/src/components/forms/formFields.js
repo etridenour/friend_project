@@ -10,8 +10,8 @@ export const inputField = ({
   }) => (
     <div>
       <div>
-        <input {...input} placeholder={label} className='inputField' type={type} />
-        <div className='errorMessage'>
+        <input {...input} placeholder={label} className='inputFormField' type={type} />
+        <div className='errorMessageFormFields'>
         {touched &&
           ((error && <span>{error}</span>) ||
             (warning && <span>{warning}</span>))}

@@ -13,6 +13,8 @@ import Signin from './components/Signin'
 import Signout from './components/Signout'
 import Main from './components/Main'
 import Loading from './components/Loading'
+import ForgotPassword from './components/ForgotPassword'
+import PasswordSent from './components/PasswordSent'
 
 class App extends Component {
 
@@ -36,6 +38,8 @@ class App extends Component {
           <Route exact path="/signin" component={Signin}/>
           <Route exact path="/signout" component={Signout}/>
           <Route exact path="/main" component={Main}/>
+          <Route exact path="/forgotpassword" component={ForgotPassword}/>
+          <Route exact path="/passwordSent" component={PasswordSent}/>
         </div>
       </BrowserRouter>
     );

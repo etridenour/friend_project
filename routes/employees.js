@@ -8,7 +8,7 @@ const {
 } = require('../dbConstants')
 
 
-router.get('/employees', (req, res) => {
+router.get('/api/employees', (req, res) => {
 
     db[USER].findAll()
     .then(results => {

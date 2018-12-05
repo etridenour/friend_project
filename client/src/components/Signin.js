@@ -8,6 +8,7 @@ import { Button } from 'reactstrap';
 
 import * as validation from './forms/formValidation';
 import * as fields from './forms/formFields';
+import loading from '../img/loading2.gif';
 import '../styles/Signin.css';
 
 class SignIn extends Component {
@@ -71,8 +72,8 @@ class SignIn extends Component {
                             { errorMessage? <div className='centerText signinError'>{errorMessage}</div> : null}
                             <Link to='/signup' className='centerText'><p>Create an account</p></Link>
                             <Link to='/forgotpassword' className='centerText forgotPassword'><p>Forgot Password</p></Link>
-                            { requestHappened && !errorMessage? <p className='centerText'> contacting server, this may take a moment</p> : null}
                         </form>
+                        { requestHappened && !errorMessage? <img className='signinLoading' src={loading}></img>: null}
             </div>
         </div>
         );
