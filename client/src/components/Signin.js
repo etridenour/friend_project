@@ -26,6 +26,7 @@ class SignIn extends Component {
 
     onSubmit = formProps => {
 
+        this.props.clearPasswordMessage();
         this.setState({
             requestHappened: true
         })

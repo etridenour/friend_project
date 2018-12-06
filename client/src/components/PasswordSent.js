@@ -17,7 +17,6 @@ class PasswordSent extends React.Component {
             <div className='sentBg'></div>
                 <div className='sentBox'>
                     <p className='sentMessage'>Password reset instructions have been emailed. Please check your inbox.</p>
-                    <Link to="/signin"><Button className='sentButton' color='warning'>Sign In</Button></Link>
                 </div>
                 
         </div>

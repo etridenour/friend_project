@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS, SIGN_OUT } from './types';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS, SIGN_OUT, PASS_MESSAGE_DEL } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -90,6 +90,10 @@ export const clearMessages = () => ({
     type: AUTH_MESSAGE_DEL
 })
 
+export const clearPasswordMessage = () => ({
+    type: PASS_MESSAGE_DEL
+})
+
 export const forgotPassword = (formProps, callback) => async dispatch => {
     console.log('in auth actions')
     try {
@@ -115,6 +119,8 @@ try {
     )
     
     callback();
+
+    dispatch({ type: AUTH_MESSAGE, payload: 'New password created.'})
 
 } catch (e) {
     dispatch({ type: AUTH_ERROR, payload: 'Please enter new password.' });

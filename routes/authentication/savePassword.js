@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jwt-simple');
 db = require('../../models');
 
 
 router.post('/api/savePassword', (req, res) => {
+    console.log(req.body)
     const { formProps, token, id, } = req.body
     const password = formProps.password
     
@@ -13,6 +16,7 @@ router.post('/api/savePassword', (req, res) => {
     .then(results => {
         
         let user = results[0].dataValues;
+        console.log(user)
         
         try {
             var payload = jwt.decode(token, user.password);

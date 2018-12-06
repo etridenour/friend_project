@@ -16,6 +16,7 @@ class ForgotPassword extends Component {
         if(props.authenticated){
             this.props.history.push('/user');
         }
+        this.props.clearMessages();
         
     }
 

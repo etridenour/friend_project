@@ -15,6 +15,7 @@ import Main from './components/Main'
 import Loading from './components/Loading'
 import ForgotPassword from './components/ForgotPassword'
 import PasswordSent from './components/PasswordSent'
+import ResetPassword from './components/ResetPassword'
 
 class App extends Component {
 
@@ -40,6 +41,7 @@ class App extends Component {
           <Route exact path="/main" component={Main}/>
           <Route exact path="/forgotpassword" component={ForgotPassword}/>
           <Route exact path="/passwordSent" component={PasswordSent}/>
+          <Route exact path='/resetpassword/:passId/:passToken' component={ResetPassword}/>
         </div>
       </BrowserRouter>
     );

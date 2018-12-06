@@ -17,9 +17,10 @@ router.post('/api/forgotPassword', (req, res) => {
         } else {
 
             let user = results[0].dataValues;
+            console.log(user)
             let timestamp = new Date().getTime();
-            let passToken = jwt.encode({sub: user.userName, iat: timestamp}, user.password);
-            let url = `<a href="http://localhost:3000//resetpassword/${user.id}/${passToken}">Reset password</a>`;
+            let passToken = jwt.encode({sub: user.email, iat: timestamp}, user.password);
+            let url = `<a href="http://localhost:3000/resetpassword/${user.id}/${passToken}">Reset password</a>`;
 
             //set up nodemailer
             let transporter = nodemailer.createTransport({
