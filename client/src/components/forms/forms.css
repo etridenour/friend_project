@@ -1,8 +1,12 @@
+
 .errorMessageFormFields{
     position: absolute;
     color: red;
+    font-family: JosefinSans-Light;
 }
 
 .inputFormField{
     width: 250px;
+    font-family: JosefinSans-Light;
+    font-size: 20px;
 }

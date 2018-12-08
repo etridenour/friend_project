@@ -48,7 +48,8 @@ export const changeProfile = (data) => async dispatch => {
             baseUrl + '/changeProfile',
             {data: data}
         );
-        dispatch({ type: CHANGE_PROFILE, payload: data})
+    
+        dispatch({ type: CHANGE_PROFILE, payload: response.data[0]})
 
     } catch (e) {
         dispatch({ type: AUTH_ERROR, payload: 'Error'})

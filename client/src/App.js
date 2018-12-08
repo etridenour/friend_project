@@ -17,6 +17,8 @@ import ForgotPassword from './components/ForgotPassword'
 import PasswordSent from './components/PasswordSent'
 import ResetPassword from './components/ResetPassword'
 
+import './styles/Global.css';
+
 class App extends Component {
 
   constructor(props){

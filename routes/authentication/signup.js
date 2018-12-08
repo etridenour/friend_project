@@ -14,12 +14,15 @@ tokenForUser = (user) => {
 
 
 router.post('/signup', (req, res) => {
-
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
-    let email = req.body.email;
+    let fName = req.body.firstName;
+    let lName = req.body.lastName;
+    let firstName = fName.charAt(0).toUpperCase() + fName.substr(1).toLowerCase();
+    let lastName = lName.charAt(0).toUpperCase() + lName.substr(1).toLowerCase();
+    let email = req.body.email.toLowerCase();
     let password = bcrypt.hashSync(req.body.password, 8);
     let secretpin = req.body.secretpin;
+    let jobDescription = req.body.jobDescription;
+    let title = req.body.title;
 
     db.users.findAll({where: {email: email}})
     .then(results => {
@@ -32,7 +35,9 @@ router.post('/signup', (req, res) => {
                 password: password,
                 secretpin: secretpin,
                 privilege: 'employee',
-                friendCount: 0
+                friendCount: 0,
+                jobDescription: jobDescription,
+                title: title
             })
             .then((user) => {
                 return res.json({token: tokenForUser(user)})

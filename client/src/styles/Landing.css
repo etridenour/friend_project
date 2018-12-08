@@ -1,4 +1,11 @@
-
+@font-face {
+    font-family: Lobster;
+    src: url("../fonts/Lobster.otf") format("opentype");
+}
+@font-face {
+    font-family: JosefinSans-Light;
+    src: url("../fonts/JosefinSans-Light.ttf") format("opentype");
+}
 .main{
     background-image: url('../img/bg.jpg');
     filter: brightness(0.6);
@@ -31,12 +38,14 @@
     font-size: 125px;
     color: rgb(224, 224, 224);
     text-align: center;
+    font-family: Lobster;
 }
 .underTitle{
     font-size: 30px;
     color: rgb(224, 224, 224);
     margin-bottom: 50px;
     text-align: center;
+    font-family: JosefinSans-Light;
 }
 .buttonsBox{
     display: flex;
@@ -44,10 +53,13 @@
     /* border: solid blue; */
     align-content: center;
     width: 750px;
+    
 }
 .buttons{
     width: 250px !important;
     height: 50px !important;
+    font-family: JosefinSans-Light;
+    font-size: 23px !important;
 }
 
 

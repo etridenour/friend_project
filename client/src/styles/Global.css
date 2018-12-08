@@ -1,0 +1,36 @@
+@font-face {
+    font-family: Lobster;
+    src: url("../fonts/Lobster.otf") format("opentype");
+}
+@font-face {
+    font-family: JosefinSans-Bold;
+    src: url("../fonts/JosefinSans-Bold.ttf") format("opentype");
+}
+@font-face {
+    font-family: JosefinSans-Light;
+    src: url("../fonts/JosefinSans-Light.ttf") format("opentype");
+}
+
+/* Modals */
+.modalHeader{
+    font-family: JosefinSans-Bold; 
+}
+.modalBody{
+    font-family: JosefinSans-Light;
+    font-size: 20px;
+}
+.modalButton{
+    font-size: 20px !important;
+}
+.inputs{
+    font-size: 20px !important;
+}
+.popHead{
+    font-family: JosefinSans-Bold; 
+    font-size: 22px !important;
+    margin-bottom: 20px;
+}
+.popBody{
+    font-family: JosefinSans-Light; 
+    font-size: 18px !important;
+}

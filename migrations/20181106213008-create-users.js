@@ -26,6 +26,15 @@ module.exports = {
       privilege: {
         type: Sequelize.STRING
       },
+      friendCount: {
+        type: Sequelize.INTEGER
+      },
+      jobDescription: {
+        type: Sequelize.STRING
+      },
+      title: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

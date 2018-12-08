@@ -18,7 +18,7 @@ tokenForUser = (user) => {
 router.post('/signin', (req, res) => {
 
 
-    let email = req.body.email;
+    let email = req.body.email.toLowerCase();
     let password = req.body.password;
 
     db.users.findAll({where: {email: email}})

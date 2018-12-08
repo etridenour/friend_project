@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     secretpin: DataTypes.STRING,
     privilege: DataTypes.STRING,
-    friendCount: DataTypes.INTEGER
+    friendCount: DataTypes.INTEGER,
+    jobDescription: DataTypes.STRING,
+    title: DataTypes.STRING
   }, {});
   users.associate = function(models) {
     users.belongsToMany(models.friendships, { foreignKey: 'friend', through: 'users_friendships' })

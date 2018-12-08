@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case AUTH_USER:
-            const {token, id, lastName, firstName, email, secretpin, privilege, friendCount} = action.payload
+            const {token, id, lastName, firstName, email, secretpin, privilege, friendCount, jobDescription, title} = action.payload
             return{...state,
                 authenticated: token,
                 id: id,
@@ -22,6 +22,8 @@ export default (state = INITIAL_STATE, action) => {
                 secretpin: secretpin,
                 privilege: privilege,
                 friendCount: friendCount,
+                jobDescription: jobDescription,
+                title: title,
                 signUpMessage: '',
                 errorMessage: '',
                 friendSuccess: null
@@ -67,9 +69,11 @@ export default (state = INITIAL_STATE, action) => {
 
         case CHANGE_PROFILE:
             return {...state,
-                secretpin: action.payload.pin,
-                firstName: action.payload.newFirstName,
-                lastName: action.payload.newLastName
+                secretpin: action.payload.secretpin,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                title: action.payload.title,
+                jobDescription: action.payload.jobDescription
             };
 
         case UPDATE_COUNT:

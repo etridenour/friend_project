@@ -1,3 +1,13 @@
+
+.navbar,
+.navbar-default {
+    background-image: url('../img/water1.jpg') !important;
+    
+}
+.navbarTitle{
+    font-family: Lobster;
+    font-size: 35px !important;
+}
 .createInput{
     width: 200px !important;
 }
@@ -9,16 +19,24 @@
 
 .addFriendButton{
     margin-right: 20px;
+    font-family: JosefinSans-Light;
+    font-size: 20px !important;
 }
 
 .profile{
     cursor: pointer;
+    font-family: JosefinSans-Light;
+    font-size: 20px;
 }
 
 .userName{
-    font-weight: bold;
+    font-family: JosefinSans-Bold;
+    font-size: 20px;
 }
-
+.signoutDrop{
+    font-family: JosefinSans-Light;
+    font-size: 20px;
+}
 .white{
     color: white !important;
 }
@@ -37,3 +55,8 @@
 .friendLabel{
     margin-right: -30px;
 }
+.expansion{
+    color: white;
+}
+
+

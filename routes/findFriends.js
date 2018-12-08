@@ -19,7 +19,7 @@ function getFriends(uid, sendFriendsToRoute) {
                 as: USER_FRIENDSHIP_AS,
                 through: USER_FRIENDSHIP_THROUGH,
                 attributes: [
-                'id', 'firstName', 'lastName', 'email', 'secretpin', 'privilege'
+                'id', 'firstName', 'lastName', 'email', 'secretpin', 'privilege', 'jobDescription', 'title'
                 ]
     
             }
@@ -28,7 +28,7 @@ function getFriends(uid, sendFriendsToRoute) {
         where: {friend1: uid}
     
         }).then(results => {
-    
+
         var friendsArray = []
     
         results.forEach(function(dbRecord){
@@ -42,7 +42,8 @@ function getFriends(uid, sendFriendsToRoute) {
             if(friendship.theFriend && friendship.theFriend[0] && friendship.theFriend[0].dataValues){
                 
                 var theFriend = friendship.theFriend[0].dataValues
-    
+                theFriend.createdAt = friendship.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric'}).replace('', '');
+            
                 // if the friend record is a valid user object, push it in to the friends array
                 if(theFriend.id){
                 delete theFriend.users_friendships

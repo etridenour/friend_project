@@ -34,6 +34,14 @@ class SignIn extends Component {
             this.props.history.push('/user');
         });
     };
+
+    onChange = e => {
+        this.props.clearMessages();
+        this.setState({
+            requestHappened: false
+        })
+    };
+
     render() {
 
     const { handleSubmit, errorMessage } = this.props
@@ -56,6 +64,7 @@ class SignIn extends Component {
                                     component={fields.inputField}
                                     validate={[validation.required, validation.email]}
                                     autoComplete="none"
+                                    onChange={this.onChange}
                                     />
         
                                 <label className='signinLabels'>Password:</label>
@@ -66,12 +75,13 @@ class SignIn extends Component {
                                     component={fields.inputField}
                                     validate={validation.required}
                                     autoComplete="none"
+                                    onChange={this.onChange}
                                     />
                         
                 
                             <Button color='success' className='signinButton' >Sign In</Button>
                             { errorMessage? <div className='centerText signinError'>{errorMessage}</div> : null}
-                            <Link to='/signup' className='centerText'><p>Create an account</p></Link>
+                            <Link to='/signup' className='centerText signinLink'><p>Create an account</p></Link>
                             <Link to='/forgotpassword' className='centerText forgotPassword'><p>Forgot Password</p></Link>
                         </form>
                         { requestHappened && !errorMessage? <img className='signinLoading' src={loading}></img>: null}

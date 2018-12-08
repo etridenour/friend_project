@@ -88,7 +88,9 @@ class AppNavbar extends React.Component {
       id: this.props.user.id,
       pin: this.state.pin,
       newFirstName: this.state.firstName,
-      newLastName: this.state.lastName
+      newLastName: this.state.lastName,
+      newJobDescription: this.state.jobDescription,
+      newTitle: this.state.title
     }
     
     this.props.changeProfile(newPinData);
@@ -155,11 +157,11 @@ class AppNavbar extends React.Component {
     return (
       <div>
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-          <ModalHeader className='eventConfirmationForm1' toggle={this.toggleModal}>My Profile</ModalHeader>
-          <ModalBody className='eventConfirmationForm2'>
+          <ModalHeader className='modalHeader' toggle={this.toggleModal}>My Profile</ModalHeader>
+          <ModalBody className='modalBody'>
             <Form  onSubmit={this.onSubmit}>
               <FormGroup row>
-                <Label className="modalLabels" for="startTime" md={3}>
+                <Label className="modalLabels" for="startTime" md={4}>
                   Email
                 </Label>
                 <Col md={3}>
@@ -167,40 +169,56 @@ class AppNavbar extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label className="modalLabels" for="nameOfEvent" md={3}>
+                <Label className="modalLabels" for="nameOfEvent" md={4}>
                   First Name
                 </Label>
                 <Col md={3}>
-                  <Input className='createInput' name='firstName' type='text' onChange={this.onChange} defaultValue={user.firstName}></Input>
+                  <Input className='inputs createInput' name='firstName' type='text' onChange={this.onChange} defaultValue={user.firstName}></Input>
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label className="modalLabels" for="nameOfEvent" md={3}>
+                <Label className="modalLabels" for="nameOfEvent" md={4}>
                   Last Name
                 </Label>
                 <Col md={3}>
-                  <Input className='createInput' name='lastName' type='text' onChange={this.onChange} defaultValue={user.lastName}></Input>
+                  <Input className='inputs createInput' name='lastName' type='text' onChange={this.onChange} defaultValue={user.lastName}></Input>
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label className="modalLabels" for="startDate" md={3}>
+                <Label className="modalLabels" for="startDate" md={4}>
                   Pin
                 </Label>
                 <Col md={3}>
-                  <Input  className='createInput' name="pin" type='text' onChange={this.onChange} defaultValue={user.secretpin}></Input>
+                  <Input  className='inputs createInput' name="pin" type='text' onChange={this.onChange} defaultValue={user.secretpin}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label className="modalLabels" for="startDate" md={4}>
+                  Job Description
+                </Label>
+                <Col md={3}>
+                  <Input  className='inputs createInput' name="jobDescription" type='text' onChange={this.onChange} defaultValue={user.jobDescription}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label className="modalLabels" for="startDate" md={4}>
+                  Title
+                </Label>
+                <Col md={3}>
+                  <Input  className='inputs createInput' name="title" type='text' onChange={this.onChange} defaultValue={user.title}></Input>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Button
                   color='danger'
-                  className="cancelButton buttonStyle"
+                  className="modalButton cancelButton buttonStyle"
                   style={{ marginTop: "2rem" }}
                   onClick={this.toggleModal}>
                   Cancel
                 </Button>
                 <Button
                   color='success'
-                  className="submitButton buttonStyle"
+                  className="modalButton submitButton buttonStyle"
                   type='submit'
                   style={{ marginTop: "2rem" }}>
                   Save
@@ -212,14 +230,14 @@ class AppNavbar extends React.Component {
 
         <Modal isOpen={this.state.friendModal} toggle={this.toggleFriendModal}>
           <ModalHeader className='friendModal' toggle={this.toggleFriendModal}>New Friend</ModalHeader>
-          <ModalBody className='eventConfirmationForm2'>
+          <ModalBody className='modalBody'>
             <Form  onSubmit={this.onSubmitFriend}>
               <FormGroup row>
                 <Label className="friendLabel" for="nameOfEvent" md={3}>
                   Friend Pin
                 </Label>
                 <Col md={5}>
-                  <Input value={this.state.friendPin} className='pinInput' name='friendPin' type='text' onChange={this.onChange}></Input>
+                  <Input value={this.state.friendPin} className='inputs pinInput' name='friendPin' type='text' onChange={this.onChange}></Input>
                 </Col>
               </FormGroup>
               <FormGroup className='messages' row>
@@ -229,7 +247,7 @@ class AppNavbar extends React.Component {
               <FormGroup row>
                 <Button
                   color='danger'
-                  className="cancelButton buttonStyle"
+                  className="modalButton cancelButton buttonStyle"
                   onClick={()=>{
                     this.toggleFriendModal()
                     this.props.clearMessages()
@@ -238,13 +256,13 @@ class AppNavbar extends React.Component {
                 </Button>
                 <Button
                   color='success'
-                  className="submitButton buttonStyle"
+                  className="modalButton submitButton buttonStyle"
                   type='submit'>
                   Add Friend
                 </Button>
                 <Button
                   color='warning'
-                  className="cancelButton buttonStyle"
+                  className="modalButton cancelButton buttonStyle"
                   onClick={()=>{
                     this.toggleFriendModal()
                     this.props.clearMessages()
@@ -257,8 +275,8 @@ class AppNavbar extends React.Component {
         </Modal>
 
 
-        <Navbar color="dark" light expand="md">
-          <NavbarBrand className='white'>Water Cooler</NavbarBrand>
+        <Navbar  className='expansion'expand="md">
+          <NavbarBrand className='white navbarTitle'>Water Cooler</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -277,7 +295,7 @@ class AppNavbar extends React.Component {
                     
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
+                  <DropdownItem className='signoutDrop'>
                     <Link to="/signout">Sign Out</Link>
                   </DropdownItem>
                 </DropdownMenu>

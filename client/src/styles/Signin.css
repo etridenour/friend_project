@@ -1,3 +1,15 @@
+@font-face {
+    font-family: Lobster;
+    src: url("../fonts/Lobster.otf") format("opentype");
+}
+@font-face {
+    font-family: JosefinSans-Bold;
+    src: url("../fonts/JosefinSans-SemiBold.ttf") format("opentype");
+}
+@font-face {
+    font-family: JosefinSans-Light;
+    src: url("../fonts/JosefinSans-Light.ttf") format("opentype");
+}
 .signinBg{
     background-image: url('../img/bg.jpg');
     filter: blur(8px) brightness(0.4);
@@ -21,6 +33,7 @@
     text-decoration: underline;
     text-align: center;
     margin-bottom: 2px;
+    font-family: JosefinSans-Bold;
 }
 .signinBox{
     background-color: rgba(206, 206, 206, 0.7);
@@ -50,6 +63,7 @@
 .signinLabels{
     margin-bottom: -50px !important;
     margin-top: 30px;
+    font-family: JosefinSans-Bold;
 }
 
 .q{
@@ -64,6 +78,8 @@
     margin-top: 50px;
     margin-bottom: 40px;
     width: 250px;
+    font-family: JosefinSans-Light;
+    font-size: 23px !important;
 }
 
 .centerText{
@@ -74,6 +90,7 @@
     bottom: 98px;
     left: 102px;
     color: red;
+    font-family: JosefinSans-Bold;
 }
 .signUpMessage{
     margin-top: 10px;
@@ -83,5 +100,13 @@
 .signinLoading{
     width: 50px;
     position: absolute;
+}
+.forgotPassword{
+    font-family: JosefinSans-Bold;
+    font-size: 18px;
+}
+.signinLink{
+    font-family: JosefinSans-Bold;
+    font-size: 18px;
 }
 

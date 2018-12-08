@@ -27,10 +27,11 @@ export const signin = (formProps, callback) => async dispatch => {
             baseUrl + '/signin',
             formProps
         );
-        dispatch({ type: AUTH_USER, payload: response.data.user })
-        dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
         localStorage.setItem('token', response.data.user.token);
         localStorage.setItem('friend_email', response.data.user.email);
+        dispatch({ type: AUTH_USER, payload: response.data.user })
+        dispatch({ type: FIND_FRIENDS, payload: response.data.friends })
+        
 
         callback();
 

@@ -175,115 +175,116 @@ class Employees extends React.Component {
         return (
             <div >
                 {navbar}
-
-                <h3>Sort by:</h3>
-                <select defaultValue='Friend Count' onChange={(e) => this.onSortChange(e.target.value)}>
-                    <option value='friendCount'>Friend Count</option>
-                    <option value='firstName'>First Name</option>
-                    <option value='lastName'>Last Name</option>
-                </select>
-    
-                <div className='clientBackground'>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                            <ModalHeader className='eventConfirmationForm1' toggle={this.headerToggle}>Warning</ModalHeader>
-                            <ModalBody className='eventConfirmationForm2'>
-                        
-                                <FormGroup row>
-                                    <Label className="modalLabels" md={3}>
-                                
-                                    </Label>
-                                    <Col md={12}>
-                                        Are you sure you want to delete {this.state.firstName} {this.state.lastName}?
+                <div className='background'>
+                    <h3>Sort by:</h3>
+                    <select defaultValue='Friend Count' onChange={(e) => this.onSortChange(e.target.value)}>
+                        <option value='friendCount'>Friend Count</option>
+                        <option value='firstName'>First Name</option>
+                        <option value='lastName'>Last Name</option>
+                    </select>
+        
+                    <div className='clientBackground'>
+                        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                                <ModalHeader className='eventConfirmationForm1' toggle={this.headerToggle}>Warning</ModalHeader>
+                                <ModalBody className='eventConfirmationForm2'>
+                            
+                                    <FormGroup row>
+                                        <Label className="modalLabels" md={3}>
                                     
-                                    </Col>
-                                </FormGroup>
-                                <Button  className='empButton' color='warning' onClick={() => this.toggle()}>Cancel</Button>
-                                <Button  className='empButton' color='danger' onClick={() => {
-                                    this.props.deleteEmployee(this.state.id, this.props.user.id);
-                                    this.toggle();
-                                    }}>Delete</Button>
-                            </ModalBody>
-                            </Modal>
-            
-                    <h2 className='employeeTitle'>Admins</h2>
-                        <Table bordered>
-                                <thead>
-                                    <tr>
-                                        <th className="text-center">#</th>
-                                        <th className="text-center">First Name</th>
-                                        <th className="text-center">Last Name</th>
-                                        <th className="text-center">Email</th>
-                                        <th className="text-center">Friend Count</th>
-                                        <th className="text-center">Privilege</th>
-                                    </tr>
-                                </thead>
-                                    { employees? sortedP1.map((employee, index) => {
-                                        return <tbody key={employee.email}>
-                                            <tr>
-                                                <th scope="row">{index + 1}</th>
-                                                <td align='center'>{employee.firstName}</td>
-                                                <td align='center'>{employee.lastName}</td>
-                                                <td align='center'>{employee.email}</td>
-                                                <td align='center'>{employee.friendCount}</td>
-                                                
-                                                {
-                                                    this.props.user.id === employee.id ? 
-                                                    <td>
-                                                        <select defaultValue={employee.privilege} onChange={(e) => this.onAdminChange(e.target.value, employee.id)}>
-                                                            <option id='opt1' value='admin'>Admin</option></select><img className='q1' alt='question' id="Popover1" src={q} onClick={this.toggleQ}></img>
-                            <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggleQ}>
-                                <PopoverHeader>Privilege</PopoverHeader>
-                                <PopoverBody>To prevent losing admin access, only another admin can change your privilege setting. </PopoverBody>
-                            </Popover>
-                                                    </td>
-                                                            
-                                                        : <td>
-                                                            <select defaultValue={employee.privilege} onChange={(e) => this.onAdminChange (e.target.value, employee.id)}>
+                                        </Label>
+                                        <Col md={12}>
+                                            Are you sure you want to delete {this.state.firstName} {this.state.lastName}?
+                                        
+                                        </Col>
+                                    </FormGroup>
+                                    <Button  className='empButton' color='warning' onClick={() => this.toggle()}>Cancel</Button>
+                                    <Button  className='empButton' color='danger' onClick={() => {
+                                        this.props.deleteEmployee(this.state.id, this.props.user.id);
+                                        this.toggle();
+                                        }}>Delete</Button>
+                                </ModalBody>
+                                </Modal>
+                
+                        <h2 className='employeeTitle'>Admins</h2>
+                            <Table bordered>
+                                    <thead>
+                                        <tr>
+                                            <th className="text-center">#</th>
+                                            <th className="text-center">First Name</th>
+                                            <th className="text-center">Last Name</th>
+                                            <th className="text-center">Email</th>
+                                            <th className="text-center">Friend Count</th>
+                                            <th className="text-center">Privilege</th>
+                                        </tr>
+                                    </thead>
+                                        { employees? sortedP1.map((employee, index) => {
+                                            return <tbody key={employee.email}>
+                                                <tr>
+                                                    <th scope="row">{index + 1}</th>
+                                                    <td align='center'>{employee.firstName}</td>
+                                                    <td align='center'>{employee.lastName}</td>
+                                                    <td align='center'>{employee.email}</td>
+                                                    <td align='center'>{employee.friendCount}</td>
+                                                    
+                                                    {
+                                                        this.props.user.id === employee.id ? 
+                                                        <td>
+                                                            <select defaultValue={employee.privilege} onChange={(e) => this.onAdminChange(e.target.value, employee.id)}>
+                                                                <option id='opt1' value='admin'>Admin</option></select><img className='q1' alt='question' id="Popover1" src={q} onClick={this.toggleQ}></img>
+                                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggleQ}>
+                                    <PopoverHeader>Privilege</PopoverHeader>
+                                    <PopoverBody>To prevent losing admin access, only another admin can change your privilege setting. </PopoverBody>
+                                </Popover>
+                                                        </td>
+                                                                
+                                                            : <td>
+                                                                <select defaultValue={employee.privilege} onChange={(e) => this.onAdminChange (e.target.value, employee.id)}>
+                                                                <option id='opt1' value='admin'>Admin</option>
+                                                                <option id='opt2' value='employee'>Employee</option>
+                                                            </select>
+                                                        </td>
+                                                    }
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        }) : null}
+                            </Table>
+                        <h2 className='employeeTitle'>Employees</h2>    
+                            <Table bordered>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th className="text-center">Last Name</th>
+                                            <th className="text-center">Email</th>
+                                            <th className="text-center">Friend Count</th>
+                                            <th className="text-center">Privilege</th>
+                                            <th className="text-center">Delete</th>
+                                        </tr>
+                                    </thead>
+                                        { employees? sortedP2.map((employee, index) => {
+                                            return <tbody key={employee.email}>
+                                                <tr>
+                                                    <th scope="row">{index + 1}</th>
+                                                    <td align='center'>{employee.firstName}</td>
+                                                    <td align='center'>{employee.lastName}</td>
+                                                    <td align='center'>{employee.email}</td>
+                                                    <td align='center'>{employee.friendCount}</td>
+                                                    <td align='center'>
+                                                        <select defaultValue={employee.privilege}
+                                                            onChange={(e) => this.props.privilegeChange(e.target.value, employee.id)}>
                                                             <option id='opt1' value='admin'>Admin</option>
                                                             <option id='opt2' value='employee'>Employee</option>
                                                         </select>
                                                     </td>
-                                                }
-                                                
-                                            </tr>
-                                        </tbody>
-                                    }) : null}
-                        </Table>
-                    <h2 className='employeeTitle'>Employees</h2>    
-                        <Table bordered>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th className="text-center">Last Name</th>
-                                        <th className="text-center">Email</th>
-                                        <th className="text-center">Friend Count</th>
-                                        <th className="text-center">Privilege</th>
-                                        <th className="text-center">Delete</th>
-                                    </tr>
-                                </thead>
-                                    { employees? sortedP2.map((employee, index) => {
-                                        return <tbody key={employee.email}>
-                                            <tr>
-                                                <th scope="row">{index + 1}</th>
-                                                <td align='center'>{employee.firstName}</td>
-                                                <td align='center'>{employee.lastName}</td>
-                                                <td align='center'>{employee.email}</td>
-                                                <td align='center'>{employee.friendCount}</td>
-                                                <td align='center'>
-                                                    <select defaultValue={employee.privilege}
-                                                        onChange={(e) => this.props.privilegeChange(e.target.value, employee.id)}>
-                                                        <option id='opt1' value='admin'>Admin</option>
-                                                        <option id='opt2' value='employee'>Employee</option>
-                                                    </select>
-                                                </td>
-                                                <td align='center'>
-                                                    <Button className='DBC' color='danger' onClick={() => this.toggle(employee.firstName, employee.lastName, employee.id, employee.email)}>X</Button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    }) : null}
-                        </Table>
+                                                    <td align='center'>
+                                                        <Button className='DBC' color='danger' onClick={() => this.toggle(employee.firstName, employee.lastName, employee.id, employee.email)}>X</Button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }) : null}
+                            </Table>
+                    </div>
                 </div>
             </div>
         );

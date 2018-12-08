@@ -96,15 +96,31 @@ class Signup extends Component {
                                 />
                             <img className='q2' id="Popover1" src={q} onClick={this.toggle}></img>
                             <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
-                                <PopoverHeader>Secret Pin</PopoverHeader>
-                                <PopoverBody>Your secret pin will be given out to create friends. </PopoverBody>
+                                <PopoverHeader className='popSignHead'>Secret Pin</PopoverHeader>
+                                <PopoverBody className='popBody'>Your secret pin will be given out to create friends. </PopoverBody>
                             </Popover>
                         </div>
+                        <label className='labels'>Job Description:</label>
+                        <Field
+                            name="jobDescription" 
+                            type="text"
+                            component={fields.inputField}
+                            validate={validation.required}
+                            autoComplete="none"
+                            />
+                        <label className='labels'>Title:</label>
+                        <Field
+                            name="title" 
+                            type="text"
+                            component={fields.inputField}
+                            validate={validation.required}
+                            autoComplete="none"
+                            />
                     <Button color='warning' className='signButton'>Sign Up</Button>
                 </form>
                 <div className='signinErrorMessage'>{this.props.errorMessage}</div>
                 <div className='haveAccount '> Already have an account?</div>
-                <Link to='/signin' className='navLink'><p>Sign in here</p></Link>
+                <Link to='/signin' className='navLink signUpHere'><p>Sign in here</p></Link>
                 
             </div>
         </div>
