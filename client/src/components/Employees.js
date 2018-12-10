@@ -173,20 +173,22 @@ class Employees extends React.Component {
 
 
         return (
-            <div >
+            <div className='background'>
                 {navbar}
-                <div className='background'>
-                    <h3>Sort by:</h3>
-                    <select defaultValue='Friend Count' onChange={(e) => this.onSortChange(e.target.value)}>
-                        <option value='friendCount'>Friend Count</option>
-                        <option value='firstName'>First Name</option>
-                        <option value='lastName'>Last Name</option>
-                    </select>
+                <div>
+                    <div className='sortBox'>
+                        <h3 className='employeeTitle2'>Sort by:</h3>
+                        <select className='selectOps' defaultValue='Friend Count' onChange={(e) => this.onSortChange(e.target.value)}>
+                            <option className='selectOps' value='friendCount'>Friend Count</option>
+                            <option className='selectOps' value='firstName'>First Name</option>
+                            <option className='selectOps' value='lastName'>Last Name</option>
+                        </select>
+                    </div>
         
                     <div className='clientBackground'>
                         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                                <ModalHeader className='eventConfirmationForm1' toggle={this.headerToggle}>Warning</ModalHeader>
-                                <ModalBody className='eventConfirmationForm2'>
+                                <ModalHeader className='modalHeader' toggle={this.headerToggle}>Warning</ModalHeader>
+                                <ModalBody className='modalBody'>
                             
                                     <FormGroup row>
                                         <Label className="modalLabels" md={3}>
@@ -197,8 +199,8 @@ class Employees extends React.Component {
                                         
                                         </Col>
                                     </FormGroup>
-                                    <Button  className='empButton' color='warning' onClick={() => this.toggle()}>Cancel</Button>
-                                    <Button  className='empButton' color='danger' onClick={() => {
+                                    <Button  className='modalButton empButton' color='warning' onClick={() => this.toggle()}>Cancel</Button>
+                                    <Button  className='modalButton empButton' color='danger' onClick={() => {
                                         this.props.deleteEmployee(this.state.id, this.props.user.id);
                                         this.toggle();
                                         }}>Delete</Button>
@@ -220,7 +222,7 @@ class Employees extends React.Component {
                                         { employees? sortedP1.map((employee, index) => {
                                             return <tbody key={employee.email}>
                                                 <tr>
-                                                    <th scope="row">{index + 1}</th>
+                                                    <td align='center'scope="row">{index + 1}</td>
                                                     <td align='center'>{employee.firstName}</td>
                                                     <td align='center'>{employee.lastName}</td>
                                                     <td align='center'>{employee.email}</td>
@@ -253,8 +255,8 @@ class Employees extends React.Component {
                             <Table bordered>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
+                                            <th className="text-center">#</th>
+                                            <th className="text-center">First Name</th>
                                             <th className="text-center">Last Name</th>
                                             <th className="text-center">Email</th>
                                             <th className="text-center">Friend Count</th>
@@ -265,7 +267,7 @@ class Employees extends React.Component {
                                         { employees? sortedP2.map((employee, index) => {
                                             return <tbody key={employee.email}>
                                                 <tr>
-                                                    <th scope="row">{index + 1}</th>
+                                                    <td align='center'scope="row">{index + 1}</td>
                                                     <td align='center'>{employee.firstName}</td>
                                                     <td align='center'>{employee.lastName}</td>
                                                     <td align='center'>{employee.email}</td>

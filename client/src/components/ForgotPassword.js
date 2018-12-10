@@ -31,7 +31,7 @@ class ForgotPassword extends Component {
     const { handleSubmit } = this.props;
     return (
         <div>
-            <div className='signinBg'></div>
+            <div className='signupBg'></div>
 
                 <div className='forgotPasswordBox'>
                     <form className='forgotPasswordForm' onSubmit={handleSubmit(this.onSubmit)}>

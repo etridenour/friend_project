@@ -100,7 +100,7 @@ class Signup extends Component {
                                 <PopoverBody className='popBody'>Your secret pin will be given out to create friends. </PopoverBody>
                             </Popover>
                         </div>
-                        <label className='labels'>Job Description:</label>
+                        <label className='labels'>Department:</label>
                         <Field
                             name="jobDescription" 
                             type="text"

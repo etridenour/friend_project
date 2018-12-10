@@ -38,7 +38,7 @@ class ResetPassword extends Component {
     const { handleSubmit } = this.props;
     return (
         <div>
-        <div className='resetBg'></div>
+        <div className='signupBg'></div>
 
             { this.state.tokenValid ? null : null}
             <form className='resetForm' onSubmit={handleSubmit(this.onSubmit)}>

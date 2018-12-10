@@ -48,7 +48,7 @@ class SignIn extends Component {
     const { requestHappened } = this.state
     return (
         <div>
-            <div className='signinBg'></div>
+            <div className='signupBg'></div>
                 
                     <div className='signinBox'>
                     <h4 className='signUpMessage'>{this.props.signUpMessage}</h4>

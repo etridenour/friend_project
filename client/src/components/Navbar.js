@@ -21,7 +21,9 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Alert,
+  Popover,
+  PopoverHeader,
+  PopoverBody,
   Col } from 'reactstrap';
 
   import '../styles/Navbar.css';
@@ -32,13 +34,15 @@ class AppNavbar extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.toggleP = this.toggleP.bind(this);
     this.state = {
       isOpen: false,
       modal: false,
       friendModal: false,
       pin: null,
       friendPin: '',
-      friendId: null
+      friendId: null,
+      popoverOpenP: false
     };
   }
 
@@ -71,6 +75,12 @@ class AppNavbar extends React.Component {
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
+    });
+  }
+
+  toggleP() {
+    this.setState({
+      popoverOpenP: !this.state.popoverOpenP
     });
   }
 
@@ -194,7 +204,7 @@ class AppNavbar extends React.Component {
               </FormGroup>
               <FormGroup row>
                 <Label className="modalLabels" for="startDate" md={4}>
-                  Job Description
+                  Department
                 </Label>
                 <Col md={3}>
                   <Input  className='inputs createInput' name="jobDescription" type='text' onChange={this.onChange} defaultValue={user.jobDescription}></Input>
@@ -275,8 +285,12 @@ class AppNavbar extends React.Component {
         </Modal>
 
 
-        <Navbar  className='expansion'expand="md">
-          <NavbarBrand className='white navbarTitle'>Water Cooler</NavbarBrand>
+        <Navbar  color="dark" className='expansion'expand="md">
+          <NavbarBrand className='white navbarTitle' id="Popover2" onClick={this.toggleP}>Water Cooler</NavbarBrand>
+            <Popover placement="bottom" isOpen={this.state.popoverOpenP} target="Popover2" toggle={this.toggleP}>
+              <PopoverHeader>Created by Eric Ridenour</PopoverHeader>
+              <PopoverBody><a href="mailto:etridenour@gmail.com">etridenour@gmail.com</a></PopoverBody>
+            </Popover>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

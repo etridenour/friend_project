@@ -3,7 +3,7 @@
     src: url("../img/aurora.ttf") format("opentype");
 }
 .background{
-    background-color: rgb(232, 253, 253);
+    background-color: rgb(221, 221, 221);
     height: 100vh;
 }
 .cardContainer{

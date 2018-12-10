@@ -12,8 +12,8 @@
 }
 .signinBg{
     background-image: url('../img/bg.jpg');
-    filter: blur(8px) brightness(0.4);
-    -webkit-filter: blur(5px) brightness(0.7);
+    filter: brightness(0.4);
+    -webkit-filter: brightness(0.7);
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,7 +23,6 @@
     position: relative; 
     left: 50%;
     transform: translateX(-50%);
-    overflow: auto;
     
 }
 .signinFormName{
@@ -52,13 +51,6 @@
     width: 375px;
     bottom: 150px;    
 }
-/* .forgotPasswordForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
-
 
 .signinLabels{
     margin-bottom: -50px !important;
@@ -66,13 +58,6 @@
     font-family: JosefinSans-Bold;
 }
 
-.q{
-    width: 25px;
-    cursor: pointer;
-    position: absolute;
-    right: 30px;
-    bottom: 193px;
-}
 
 .signinButton{
     margin-top: 50px;

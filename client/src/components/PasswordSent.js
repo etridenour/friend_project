@@ -14,7 +14,7 @@ class PasswordSent extends React.Component {
     render() {
         return (
             <div>
-            <div className='sentBg'></div>
+            <div className='signupBg'></div>
                 <div className='sentBox'>
                     <p className='sentMessage'>Password reset instructions have been emailed. Please check your inbox.</p>
                 </div>

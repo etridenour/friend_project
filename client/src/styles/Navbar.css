@@ -1,12 +1,15 @@
 
 .navbar,
 .navbar-default {
-    background-image: url('../img/water1.jpg') !important;
-    
+    /* background-image: url('../img/water1.jpg') !important; */
+    /* background-color: red !important; */
 }
 .navbarTitle{
     font-family: Lobster;
     font-size: 35px !important;
+}
+.navbarTitle:hover{
+    cursor: pointer;
 }
 .createInput{
     width: 200px !important;

@@ -1,8 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Water Cooler
 
-## Available Scripts
-
-In the project directory, you can run:
+Water Cooler is a light-weight web app that tracks office 
 
 ### `npm start`
 
