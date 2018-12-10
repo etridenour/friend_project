@@ -118,7 +118,7 @@ class Signup extends Component {
                             />
                     <Button color='warning' className='signButton'>Sign Up</Button>
                 </form>
-                <div className='signinErrorMessage'>{this.props.errorMessage}</div>
+                <div className='signupErrorMessage'>{this.props.errorMessage}</div>
                 <div className='haveAccount '> Already have an account?</div>
                 <Link to='/signin' className='navLink signUpHere'><p>Sign in here</p></Link>
                 

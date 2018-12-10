@@ -15,6 +15,7 @@ class SignIn extends Component {
 
     constructor(props){
         super(props)
+        this.props.userCreatedClearMessages();
         if(props.authenticated){
             this.props.history.push('/user');
         }

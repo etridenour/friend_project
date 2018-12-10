@@ -90,10 +90,10 @@
     font-family: JosefinSans-Light;
     font-size: 23px !important;
 }
-.signinErrorMessage{
+.signupErrorMessage{
     color: red;
     position: absolute;
-    bottom: 85px;
+    bottom: 94px;
     font-family: JosefinSans-Bold;
 }
 .haveAccount{

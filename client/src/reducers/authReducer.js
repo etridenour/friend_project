@@ -1,4 +1,4 @@
-import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, SIGN_OUT, CHANGE_PROFILE, UPDATE_COUNT, PASS_MESSAGE_DEL } from '../actions/types';
+import { AUTH_USER, AUTH_ERROR, AUTH_MESSAGE, AUTH_MESSAGE_DEL, SIGN_OUT, CHANGE_PROFILE, UPDATE_COUNT, PASS_MESSAGE_DEL, USER_CREATED_AUTH_MESSAGE_DEL } from '../actions/types';
 
 const INITIAL_STATE = {
     authenticated: '',
@@ -47,6 +47,11 @@ export default (state = INITIAL_STATE, action) => {
                 errorMessage: '',
                 friendSuccess: null
             };
+            
+        case USER_CREATED_AUTH_MESSAGE_DEL:
+            return {...state,
+                errorMessage: '',
+                }
         
         case PASS_MESSAGE_DEL:
             return {...state,

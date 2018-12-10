@@ -47,7 +47,7 @@
     left: 50%;
     top: 70px;
     transform: translateX(-50%);
-    height: 500px; 
+    height: 560px; 
     width: 375px;
     bottom: 150px;    
 }
@@ -72,7 +72,7 @@
 }
 .signinError{
     position: absolute;
-    bottom: 98px;
+    bottom: 91px;
     left: 102px;
     color: red;
     font-family: JosefinSans-Bold;
@@ -80,6 +80,7 @@
 .signUpMessage{
     margin-top: 10px;
     color: red;
+    font-family: JosefinSans-Bold;
 }
 
 .signinLoading{

@@ -1,6 +1,6 @@
 # Water Cooler
 
-Water Cooler is a light-weight web app that tracks office 
+Water Cooler is a light-weight web app that tracks 
 
 ### `npm start`
 

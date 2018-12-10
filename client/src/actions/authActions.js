@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS, SIGN_OUT, PASS_MESSAGE_DEL } from './types';
+import { AUTH_ERROR, AUTH_USER, AUTH_MESSAGE, AUTH_MESSAGE_DEL, FIND_FRIENDS, SIGN_OUT, PASS_MESSAGE_DEL, USER_CREATED_AUTH_MESSAGE_DEL } from './types';
 
 var baseUrl = ''
 //var baseUrl = 'http://localhost:5000'
@@ -89,6 +89,9 @@ export const signout = () => {
 
 export const clearMessages = () => ({
     type: AUTH_MESSAGE_DEL
+})
+export const userCreatedClearMessages = () => ({
+    type: USER_CREATED_AUTH_MESSAGE_DEL
 })
 
 export const clearPasswordMessage = () => ({
