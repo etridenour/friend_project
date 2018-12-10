@@ -1,5 +1,21 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Col, Row, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { Card, 
+    CardImg, 
+    CardText, 
+    CardBody, 
+    CardTitle, 
+    CardSubtitle, 
+    Button, 
+    Col, 
+    Row, 
+    Modal, 
+    ModalHeader, 
+    ModalBody, 
+    Form,
+    FormGroup,
+    Label,
+    Input } 
+    from 'reactstrap';
 import * as actions from '../actions/actions';
 import { connect } from 'react-redux';
 import Navbar from './Navbar'
@@ -13,20 +29,24 @@ class User extends React.Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
         let colorArray = ['primary', 'success', 'info', 'warning', 'danger']; 
 
         this.state = ({
-            cardColor: this.shuffle(colorArray),
-            popoverOpen: false
+            modal: false,
+            cardColor: this.shuffle(colorArray)
         })   
     }
-
-    toggle() {
+    
+    toggleModal = (friend) => {
         this.setState({
-            popoverOpen: !this.state.popoverOpen
+            modal: !this.state.modal,
+            name: friend.firstName + ' ' + friend.lastName,
+            email: friend.email,
+            jobDescription: friend.jobDescription,
+            title: friend.title,
+            createdAt: friend.createdAt
         });
-    }
+    };
     
 
     shuffle(a) {
@@ -44,10 +64,9 @@ class User extends React.Component {
     
         this.props.friends.map((friend) =>  {
 
-
-            renderedCards.push(<Card className='card zoom' inverse color={this.state.cardColor[colorNumber]} key={friend.id}>
+            renderedCards.push(<Card className='card zoom' inverse color={this.state.cardColor[colorNumber]} key={friend.id} onClick={() => this.toggleModal(friend)}>
             {/* <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" /> */}
-            <CardBody id="Popover1" onClick={this.toggle}>
+            <CardBody>
                 <Row>
                     <Col className='box2' xs={4}>
                         <div></div>
@@ -62,13 +81,6 @@ class User extends React.Component {
                 <div className='box2' md={4}>
                     <div className='stamp'>{friend.firstName[0].toUpperCase()}{friend.lastName[0].toUpperCase()}</div>
                 </div>
-                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
-                    {/* <PopoverHeader>Popover Title</PopoverHeader> */}
-                    <PopoverHeader className='popUserHead'>{friend.email}</PopoverHeader>
-                    <PopoverHeader className='popUserHead'>{friend.jobDescription}</PopoverHeader>
-                    <PopoverHeader className='popUserHead'>{friend.title}</PopoverHeader>
-                    <PopoverHeader className='popUserHead'>Friends since {friend.createdAt}</PopoverHeader>
-                </Popover>
             </CardBody>
             </Card>)
 
@@ -96,6 +108,56 @@ class User extends React.Component {
     
         return (
             <div>
+                <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+                    <ModalHeader className='modalHeader' toggle={this.toggleModal}>{this.state.name}</ModalHeader>
+                    <ModalBody className='modalBody'>
+                        <Form>
+                        <FormGroup row>
+                            <Label className="modalLabels" for="startTime" md={4}>
+                            Email
+                            </Label>
+                            <Col md={3}>
+                            <Input plaintext>{this.state.email}</Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="modalLabels" for="startTime" md={4}>
+                            Department
+                            </Label>
+                            <Col md={3}>
+                            <Input plaintext>{this.state.jobDescription}</Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="modalLabels" for="startTime" md={4}>
+                            Title
+                            </Label>
+                            <Col md={3}>
+                            <Input plaintext>{this.state.title}</Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="modalLabels" for="startTime" md={4}>
+                            Friends Since 
+                            </Label>
+                            <Col md={8}>
+                            <Input plaintext>{this.state.createdAt}</Input>
+                            </Col>
+                        </FormGroup>
+                        
+                        <FormGroup row>
+                            <Button
+                            color='success'
+                            className="modalButton cancelButton buttonStyle"
+                            style={{ marginTop: "2rem" }}
+                            onClick={this.toggleModal}>
+                            Ok
+                            </Button>
+                        </FormGroup>
+                        </Form>
+                    </ModalBody>
+                    </Modal>
+
                 {navbar}
                 <div className='background'>
                     <div className='totalFriendsBox'>

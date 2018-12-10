@@ -2,10 +2,10 @@
     font-family: aurora;
     src: url("../img/aurora.ttf") format("opentype");
 }
-.background{
+/* .background{
     background-color: rgb(221, 221, 221);
-    height: 100vh;
-}
+    height: 100%;
+} */
 .cardContainer{
     margin-top: 50px;
     display: flex;
@@ -15,6 +15,7 @@
     width: 375px;
     margin-left: 30px;
     margin-top: 65px;
+    margin-bottom: 40px;
     height: 69px;
     position: relative;
     -webkit-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
