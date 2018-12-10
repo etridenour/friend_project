@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/static/media/bg.859da1cd.jpg"
   },
   {
-    "revision": "b923f5cacfc383f9eecd",
-    "url": "/static/css/main.c756dd1f.chunk.css"
+    "revision": "d7bbd364aaee840e0790",
+    "url": "/static/css/main.e2406ef8.chunk.css"
   },
   {
     "revision": "9880fc0845d0f3950e490e4f3b05c08c",
     "url": "/static/media/JosefinSans-Bold.9880fc08.ttf"
   },
   {
-    "revision": "2607e08042782f2fb842",
-    "url": "/static/js/1.2607e080.chunk.js"
+    "revision": "4f7f1ee627f6183949cd",
+    "url": "/static/js/1.4f7f1ee6.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/static/media/loading.f4404720.gif"
   },
   {
-    "revision": "b923f5cacfc383f9eecd",
-    "url": "/static/js/main.b923f5ca.chunk.js"
+    "revision": "d7bbd364aaee840e0790",
+    "url": "/static/js/main.d7bbd364.chunk.js"
   },
   {
     "revision": "2526378d14011b87e2106de9b013c39b",
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "/static/media/JosefinSans-SemiBold.217a5e7e.ttf"
   },
   {
-    "revision": "2607e08042782f2fb842",
+    "revision": "4f7f1ee627f6183949cd",
     "url": "/static/css/1.4812ec6f.chunk.css"
   },
   {
-    "revision": "f6d93286474bbe8abe5fbd263c649dd3",
+    "revision": "009da3fc997f52545d7d3dfe20426869",
     "url": "/index.html"
   }
 ];
