@@ -1,6 +1,6 @@
 import { FIND_EMPLOYEES } from '../actions/types';
 
-const INITIAL_STATE = []
+const INITIAL_STATE = {}
 
 export default function(state = INITIAL_STATE, action){
 
@@ -8,7 +8,7 @@ export default function(state = INITIAL_STATE, action){
 
 
         case FIND_EMPLOYEES:
-        
+            console.log(action.payload)
             return action.payload
             
             

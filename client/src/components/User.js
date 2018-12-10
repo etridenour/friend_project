@@ -116,7 +116,7 @@ class User extends React.Component {
                             <Label className="modalLabels" for="startTime" md={4}>
                             Email
                             </Label>
-                            <Col md={3}>
+                            <Col md={8}>
                             <Input plaintext>{this.state.email}</Input>
                             </Col>
                         </FormGroup>
@@ -124,7 +124,7 @@ class User extends React.Component {
                             <Label className="modalLabels" for="startTime" md={4}>
                             Department
                             </Label>
-                            <Col md={3}>
+                            <Col md={8}>
                             <Input plaintext>{this.state.jobDescription}</Input>
                             </Col>
                         </FormGroup>
@@ -132,7 +132,7 @@ class User extends React.Component {
                             <Label className="modalLabels" for="startTime" md={4}>
                             Title
                             </Label>
-                            <Col md={3}>
+                            <Col md={8}>
                             <Input plaintext>{this.state.title}</Input>
                             </Col>
                         </FormGroup>

@@ -15,7 +15,7 @@ router.post('/privilegeChange', (req, res) => {
         {where: {id: id}}
     )
     .then(() => {
-        res.redirect('/employees')
+        res.redirect('/api/employees')
     })
 })
 
