@@ -47,7 +47,9 @@ router.post('/signin', (req, res) => {
                         email: user.email,
                         secretpin: user.secretpin,
                         privilege: user.privilege,
-                        friendCount: user.friendCount
+                        friendCount: user.friendCount,
+                        jobDescription: user.jobDescription,
+                        title: user.title
                     }
 
                     let uid = user.id;
