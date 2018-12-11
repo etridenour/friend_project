@@ -4,10 +4,18 @@ const jwt = require('jwt-simple');
 const nodemailer = require('nodemailer');
 db = require('../../models');
 
+
 //change let url  = ... when hosted and ad https to http
 
 router.post('/api/forgotPassword', (req, res) => {
     var email = req.body.userName
+    var resetUrl;
+
+    if (process.env.NODE_ENV == 'development') { 
+        resetUrl = 'http://localhost:3000'
+    } else if (process.env.NODE_ENV == 'production'){
+        resetUrl = 'https://watercoolerapp.herokuapp.com/'
+    }
 
     db.users.findAll({where: {email: email}})
     .then( results => {
@@ -20,7 +28,7 @@ router.post('/api/forgotPassword', (req, res) => {
             console.log(user)
             let timestamp = new Date().getTime();
             let passToken = jwt.encode({sub: user.email, iat: timestamp}, user.password);
-            let url = `<a href="http://localhost:3000/resetpassword/${user.id}/${passToken}">Reset password</a>`;
+            let url = `<a href="${resetUrl}/resetpassword/${user.id}/${passToken}">Reset password</a>`;
 
             //set up nodemailer
             let transporter = nodemailer.createTransport({

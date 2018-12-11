@@ -26,6 +26,9 @@ class ForgotPassword extends Component {
             this.props.history.push('/passwordsent');
         });
     };
+    onChange = e => {
+        this.props.clearMessages();
+    };
     render() {
 
     const { handleSubmit } = this.props;
@@ -39,13 +42,14 @@ class ForgotPassword extends Component {
                     <h2 className='forgotPasswordFormName'>Password Reset</h2>
                         <p className='centerText resetMessage'>Please enter your email. We will email instructions for password reset.</p>
                         <fieldset className='signField'>
-                            <label>Email:</label>
+                            <label className='signinLabels'>Email:</label>
                             <Field
                                 name="userName"
                                 type="text"
                                 component={fields.inputField}
                                 validate={[validation.required, validation.email]}
                                 autoComplete="none"
+                                onChange={this.onChange}
                                 />
                         </fieldset>
                         <p className='passwordResetError'>{this.props.errorMessage}</p>

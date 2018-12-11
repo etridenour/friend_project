@@ -43,10 +43,10 @@ class ResetPassword extends Component {
             { this.state.tokenValid ? null : null}
             <form className='resetForm' onSubmit={handleSubmit(this.onSubmit)}>
             <h2 className='topTitle'>Water Cooler</h2>
-                <strong className=''>Please enter a new password.</strong>
+                <strong className='newPassword'>Please enter a new password.</strong>
                 {this.props.emailDisp}
                 <fieldset className='signField'>
-                    <label>Password:</label>
+                    <label className='signinLabels'>Password:</label>
                     <Field
                         name="password"
                         type="password"
