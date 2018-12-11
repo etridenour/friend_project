@@ -14,7 +14,7 @@ router.post('/api/forgotPassword', (req, res) => {
     if (process.env.NODE_ENV == 'development') { 
         resetUrl = 'http://localhost:3000'
     } else if (process.env.NODE_ENV == 'production'){
-        resetUrl = 'https://watercoolerapp.herokuapp.com/'
+        resetUrl = 'https://watercoolerapp.herokuapp.com'
     }
 
     db.users.findAll({where: {email: email}})
