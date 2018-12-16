@@ -1,42 +1,20 @@
 # Water Cooler
 
-Water Cooler is a light-weight web app that tracks 
+**Water Cooler** is a simple web app that tracks employees that have met each other in the workplace.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How To Use
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Go to the live site at **https://watercoolerapp.herokuapp.com/**. Sign up and sign in. You will create a secret pin that will given out to other employees once they meet you. Likewise, you will receive pin numbers from employees you have met. Input the friend pin with the **Add Friend** button in the navbar. Here is a list of pre-made friend pins to use: charlie, dennis, macmac, deedee, frank, waitress, cricket, billbill, jackjack. Once created, your friends will appear on the screen. Click on the friend card to show more information. That's it!
 
-### `npm test`
+### Privilege Levels
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+When you create a new account, your default privilege level will be employee. This will only give you access to the **Add Friend** functionality. 
 
-### `npm run build`
+When signed in as an admin, you will have access to the same functionalities as the employee, and access to the entire list of employees currently signed up. The list can be sorted based on first name, last name, or total number of friends. From the list you can also promote employees to admin status, demote to employee status, or delete an employee from the database.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To sign in as an admin, use:
+email: frank@frank.com
+password: password
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Built With
