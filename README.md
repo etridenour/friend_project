@@ -18,3 +18,21 @@ email: frank@frank.com
 password: password
 
 ## Built With
+
+- React
+- Redux
+- Redux-Thunk
+- Node.js
+- Express
+- PostgreSQL
+- Sequelize
+- Passport - JWT
+- JavaScript
+- HTML
+- CSS
+- Bootstrap
+
+## Author
+
+Eric Ridenour
+
